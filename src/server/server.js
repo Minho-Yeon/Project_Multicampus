@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const port = 5000;
 
-global.db = require('./dbconnection.js');
+global.sql = require('./dbconnection.js');
 
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
