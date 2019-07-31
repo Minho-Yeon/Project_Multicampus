@@ -60,7 +60,6 @@ class Chart extends Component {
               </Collapse>
             </li>
           </ul>
-  
         </div>
       );
     }
