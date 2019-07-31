@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Project.scss';
 import Header from './Header';
-import Submain from './contents/Submain';
 import Main from './contents/Main';
 import Exchange from './contents/Exchange';
 import Login from './contents/Login';
@@ -24,11 +23,12 @@ class Project extends Component {
     render() {
         return (
             <BrowserRouter>
-                <Header id="Header" isToggle={this.isToggle} />{/*Navbar 부분 */}
+                <div>
+                    <Header isToggle={this.isToggle} />{/*Navbar 부분 */}
+                </div>
                 <div>
                     <div id="Contents" style={{ width: this.state.isOpen ? '75%' : '100%' }}>{/*내용 부분 */}
-                        <Route path="/submain" component={Submain} />
-                        <Route path="/main" component={Main} />
+                        <Route exact to path="/" component={Main} />
                         <Route path="/exchange" component={Exchange} />
                         <Route path="/login" component={Login} />
                         <Route path="/signin" component={Signin} />
@@ -36,10 +36,10 @@ class Project extends Component {
                     <div id="Mypage" style={{ width: this.state.isOpen ? '25%' : '0%' }}>{/*마이페이지 부분 */}
                         <Mypage />
                     </div>
-                    </div> 
+                </div>
             </BrowserRouter>
         )
-    } 
+    }
 }
-           
+
 export default Project;        
