@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Button,Collapse,Card,CardBody} from 'reactstrap';
+import {Collapse,Card,CardBody} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Chart.scss';
 
@@ -14,7 +14,9 @@ class Chart extends Component {
           collapse: !prevstate.collapse 
         }));
     }
-  
+    isOpen=()=>{
+      this.props.isOpen();
+    }
     render(
         chart = {
       height: '80px',
@@ -47,7 +49,7 @@ class Chart extends Component {
               <img className="subimg" src={this.props.img} alt=""/>
               {this.props.name}
               <p style={change}>{this.props.change}</p>
-              <Button className="downbtn" onClick={this.toggle}><img className="downimg" src="./jpg/down.png" alt=""/></Button>
+              <button className="downbtn" onClick={this.toggle}><img className="downimg" src="./jpg/down.png" alt=""/></button>
               <Collapse isOpen={this.state.collapse}>
                 <Card>
                   <CardBody>
@@ -55,6 +57,7 @@ class Chart extends Component {
                      enim eiusmod high life accusamus terry richardson ad squid. Nihil
                      anim keffiyeh helvetica, craft beer labore wes anderson cred
                      nesciunt sapiente ea proident.
+                    <button onClick={()=>{this.isOpen()}}>결제하기</button>
                 </CardBody>
                 </Card>
               </Collapse>
