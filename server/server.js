@@ -24,6 +24,8 @@ const exchange = require('./router/exchange.js');
 app.use('/server/exchange',exchange);
 const email = require('./router/email.js');
 app.use('/server/email',email);
+const checkcode = require('./router/checkcode.js');
+app.use('/server/checkcode',checkcode);
 
 
 app.listen(port, ()=>{

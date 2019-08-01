@@ -6,22 +6,29 @@ import './Login.scss';
 import axios from 'axios';
 
 class Login extends Component{
-    handleChange = (e) => {
+    handleChange = (e) => { //로그인 시도 정보를 받아오는 메소드 -민호
         const {logininfo} = this;
         const { name, value } = e.target;
         console.log('name:'+name+' value'+value);
         logininfo[name]= value;
+        e.preventDefault();
     }
-    tryLogin = ()=>{
+    tryLogin = ()=>{    //로그인시도 메소드 -민호
         console.log(this.logininfo);
-        axios.post('/server/login',{
+        let regExp = /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
+        if (!regExp.test(this.logininfo.email)) {       //이메일 정규식 체크-민호
+            console.log('이메일이 아닙니다');
+            alert('이메일 형식이 아닙니다.');
+            return;
+        };
+        axios.post('/server/login',{    //서버에 로그인 요청- 민호
             email:this.logininfo.email,
             password:this.logininfo.password
         })
         .then((c)=>{
-            if(c.data.userinfo!==undefined){
-                localStorage.setItem('logininfo',c.data.userinfo);
-                this.props.history.push('/');
+            if(c.data.userinfo!==undefined){    
+                localStorage.setItem('logininfo',c.data.userinfo);//로컬 스토리지에 로그인 정보 저장-민호
+                this.props.history.push('/');   //메인페이지로 이동-민호
             }
         })
         .catch(err=>{
@@ -30,7 +37,7 @@ class Login extends Component{
         
     }
     render(){
-        return(
+        return(//민호
 
             <div className='loginform'>
             <AuthContent title="로그인">

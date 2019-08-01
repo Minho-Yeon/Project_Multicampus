@@ -1,64 +1,21 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
 const router = express.Router();
 
 
 
 // *********** npm install nodemailer필요해요.
-router.get('/nexon',(req,res)=> {
+router.post('/nexon',(req,res)=> {  //넥슨 이메일을 전송요청 처리 메소드-민호
     console.log('넥슨이메일 전송');
-    let userEmail = req.body.email;
-
-    let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth:{
-            user:'love.pink.edacb1@gmail.com',
-            pass: 'light310915*'
-        }
-    });
-
-    let mailOptions = {
-        from: 'love.pink.edacb1@gmail.com',
-        to: 'momo0735@naver.com',
-        subject: '안녕',
-        text: 'text@@@'
-    };
-
-    transporter.sendMail(mailOptions, function(err, info){
-        if(err){
-            console.log(err);
-        } else {
-            console.log('send')
-        }
-    });
+    let userEmail = req.body.nexonemail;
+    console.log('전송받을 이메일:'+userEmail);
+    res.end();
 });
 
-router.get('/',(req,res)=> {
+router.post('/',(req,res)=> {   //회원가입 이메일전송 요청 처리 메소드-민호
     console.log('회원가입 메일 전송');
     let userEmail = req.body.email;
-
-    let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth:{
-            user:'love.pink.edacb1@gmail.com',
-            pass: 'light310915*'
-        }
-    });
-
-    let mailOptions = {
-        from: 'love.pink.edacb1@gmail.com',
-        to: 'momo0735@naver.com',
-        subject: '안녕',
-        text: 'text@@@'
-    };
-
-    transporter.sendMail(mailOptions, function(err, info){
-        if(err){
-            console.log(err);
-        } else {
-            console.log('send')
-        }
-    });
+    console.log('전송받을 이메일:'+userEmail);
+    res.end();
 });
 
 module.exports = router;
