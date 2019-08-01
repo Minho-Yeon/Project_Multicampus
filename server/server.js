@@ -23,7 +23,7 @@ app.use('/gamelist',gamelist);
 const exchange = require('./router/exchange.js');
 app.use('/exchange',exchange);
 const authEmail = require('./router/authEmail.js');
-app.use('/auth',exchange);
+app.use('/auth',authEmail);
 
 
 app.listen(port, ()=>{

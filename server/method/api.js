@@ -2,7 +2,7 @@
 module.exports = {
 
 
-    emailcheck:(user_email)=>{
+    checkemail:(user_email)=>{
         let query='SELECT EXISTS (SELECT * FROM Users_TB WHERE email_user=?) as success';
         mydb.query(query,[user_email],(err,result)=>{
             if(err) throw error;
@@ -10,16 +10,16 @@ module.exports = {
 
         });
         return true;
-    }
+    },
 
-    getUsersinfo: (user_email) => {
-        return Users_TB;
-    },
-    getGameMoney: (idx_user) => {
-        return Characters_TB;
-    },
-    getExchangeRate:(game)=>{
-        return exchange_rate;
-    },
+    // getUsersinfo: (user_email) => {
+    //     return Users_TB;
+    // },
+    // getGameMoney: (idx_user) => {
+    //     return Characters_TB;
+    // },
+    // getExchangeRate:(game)=>{
+    //     return exchange_rate;
+    // },
 
 }
