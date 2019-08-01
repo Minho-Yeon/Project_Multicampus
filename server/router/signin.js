@@ -1,8 +1,9 @@
 const express = require('express');     //민호
 const router = express.Router();
 const hasher = require('pbkdf2-password');
-router.post('/signin',(req,res)=>{
-    console.log('/signin요청 받음');
+const alert = require('alert-node');
+router.post('/',(req,res)=>{
+    console.log('/server/signin요청 받음');
     let userinfo={};                //회원가입 요청 받은 값 저장
     userinfo.email=req.body.email;
     userinfo.name = req.body.name;
@@ -13,6 +14,7 @@ router.post('/signin',(req,res)=>{
     let regExp = /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
     if(!regExp.test(userinfo.email)){       //이메일 정규식 체크
         console.log('이메일이 아닙니다');
+        alert('이메일 형식이 아닙니다.');
         return ;
     };
     var regex = /^[A-Za-z0-9]{6,12}$/;
@@ -21,7 +23,7 @@ router.post('/signin',(req,res)=>{
         return ;
     };
 
-    if(!userinfo.password==req.body.passwordcheck){ //비밀번호 체크
+    if(!userinfo.password==req.body.passwordconfirm){ //비밀번호 체크
         console.log('비밀번호가 일치 하지 않습니다.');
         return ;
     }

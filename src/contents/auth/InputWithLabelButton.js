@@ -46,12 +46,12 @@ const Button = styled.button`
 `;
 
 // rest 쪽에는 onChange, type, name, value, placeholder 등의 input 에서 사용 하는 값들을 넣어줄수 있다.
-const InputWithLabelButton = ({  label, name, placeholder,onChange}) => (
+const InputWithLabelButton = ({  label, name, placeholder,onChange, onClick}) => (
     <Wrapper>
         <Label>{label}</Label>
         <div>
         <Input name={name} placehold={placeholder} onChange={onChange}/>
-        <Button >인즌번호 전송/재전송</Button> 
+        <Button onClick={onClick}>인증번호 전송/재전송</Button> 
         </div>
     </Wrapper>
 );
