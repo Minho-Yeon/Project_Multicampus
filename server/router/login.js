@@ -6,7 +6,7 @@ const alert = require('alert-node')
 
 
 // ***********  npm i -S alert-node 필요해요.
-router.post('/searchUser',(req,res)=>{
+router.post('/',(req,res)=>{
     console.log('/login요청 받음');
     console.log(req.body)
 
