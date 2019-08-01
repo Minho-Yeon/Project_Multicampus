@@ -15,15 +15,17 @@ app.use(express.urlencoded({
 }));
 
 const login = require('./router/login.js');
-app.use('/login',login);
+app.use('/server/login',login);
 const signin = require('./router/signin.js');
-app.use('/signin',signin);
+app.use('/server/signin',signin);
 const gamelist = require('./router/gamelist.js');
-app.use('/gamelist',gamelist);
+app.use('/server/gamelist',gamelist);
 const exchange = require('./router/exchange.js');
-app.use('/exchange',exchange);
-const authEmail = require('./router/authEmail.js');
-app.use('/auth',authEmail);
+app.use('/server/exchange',exchange);
+const email = require('./router/email.js');
+app.use('/server/email',email);
+const checkcode = require('./router/checkcode.js');
+app.use('/server/checkcode',checkcode);
 
 
 app.listen(port, ()=>{

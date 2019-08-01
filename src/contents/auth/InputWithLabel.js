@@ -30,6 +30,7 @@ const Input = styled.input`
 `;
 
 // rest 쪽에는 onChange, type, name, value, placeholder 등의 input 에서 사용 하는 값들을 넣어줄수 있다.
+// 회원가입 input,label 부분 - 민호
 const InputWithLabel = ({label, ...rest}) => (
     <Wrapper>
         <Label>{label}</Label>

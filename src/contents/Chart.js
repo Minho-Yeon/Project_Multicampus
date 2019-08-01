@@ -9,18 +9,15 @@ class Chart extends Component {
       super(props);
       this.toggle = this.toggle.bind(this);
       this.state = { collapse: false };
-      console.log("this.state:", this.state);
       
     }
     toggle() {
       this.setState(prevstate=>({ 
-          collapse: !prevstate.collapse 
-        }),console.log("collapse:", this.state)
-        );
+          collapse:!prevstate.collapse 
+        }));
     }
     isOpen=()=>{
       this.props.isOpen();
-      console.log("this.state 2:", this.state);
       
     }
     render(
