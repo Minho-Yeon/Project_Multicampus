@@ -3,19 +3,26 @@ import {Collapse,Card,CardBody} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Chart.scss';
 
+
 class Chart extends Component {
     constructor(props) {
       super(props);
       this.toggle = this.toggle.bind(this);
       this.state = { collapse: false };
+      console.log("this.state:", this.state);
+      
     }
+
     toggle() {
       this.setState(prevstate=>({ 
           collapse: !prevstate.collapse 
-        }));
+        }),console.log("collapse:", this.state)
+        );
     }
     isOpen=()=>{
       this.props.isOpen();
+      console.log("this.state 2:", this.state);
+      
     }
     render(
         chart = {
@@ -45,7 +52,7 @@ class Chart extends Component {
       return (
         <div className="ChartDiv" style={chart}>
           <ul style={ulstyle}>
-            <li style={list}>
+            <div style={list}>
               <img className="subimg" src={this.props.img} alt=""/>
               {this.props.name}
               <p style={change}>{this.props.change}</p>
@@ -61,7 +68,7 @@ class Chart extends Component {
                 </CardBody>
                 </Card>
               </Collapse>
-            </li>
+            </div>
           </ul>
         </div>
       );

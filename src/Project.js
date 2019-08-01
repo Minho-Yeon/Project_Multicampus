@@ -6,6 +6,7 @@ import Exchange from './contents/Exchange';
 import Login from './contents/Login';
 import Signin from './contents/Signin';
 import Mypage from './Mypage';
+import Footer from './Footer';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 class Project extends Component {
@@ -26,16 +27,19 @@ class Project extends Component {
                 <div>
                     <Header isToggle={this.isToggle} />{/*Navbar 부분 */}
                 </div>
-                <div>
-                    <div id="Contents" style={{ width: this.state.isOpen ? '75%' : '100%' }}>{/*내용 부분 */}
+                <div className="ContentsBox">
+                    <div id="Contents" style={{ width: this.state.isOpen ? '70%' : '100%'}}>{/*내용 부분 */}
                         <Route exact to path="/" component={Main} />
                         <Route path="/exchange" component={Exchange} />
                         <Route path="/login" component={Login} />
                         <Route path="/signin" component={Signin} />
                     </div>
-                    <div id="Mypage" style={{ width: this.state.isOpen ? '25%' : '0%' }}>{/*마이페이지 부분 */}
+                    <div id="Mypage" style={{ width: this.state.isOpen ? '30%' : '0%'}}>{/*마이페이지 부분 */}
                         <Mypage />
                     </div>
+                </div>
+                <div>
+                    <Footer />{/* footer 부분*/}
                 </div>
             </BrowserRouter>
         )

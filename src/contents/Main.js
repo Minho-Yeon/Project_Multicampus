@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Chart from './Chart';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Exchange from './Exchange';
+import Login from './Login';
 class Main extends Component {
     constructor(props){
         super(props);
@@ -17,6 +20,7 @@ class Main extends Component {
     }
     render() {
         return (
+            <BrowserRouter>
             <div>
                 <div className="search">
 
@@ -37,10 +41,15 @@ class Main extends Component {
                     <ModalHeader toggle={this.isOpen}>Modal title</ModalHeader>
                     <ModalBody>
                         모달입니다
+                       <button><Route exact to path="/exchange" component={Exchange} />결제페이지로</button>
+                       <button><Route path="/login" component={Login} />결제하기</button>
                     </ModalBody>
                 </Modal>
+                
                 {/* 헤더와 로그인폼 끝 (상욱 07.25) */}
+                
             </div>
+            </BrowserRouter>
         )
     }
 }

@@ -1,0 +1,50 @@
+//Login CSS 시작 상욱(08.01)
+.Logindiv{
+    position: absolute;
+    top: 300px;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    border: 1px solid black;
+    border-radius: 24px;
+    margin: 0 auto;
+    width: 500px;
+
+}
+
+.Logindiv form{
+text-align: center;
+}
+
+form div {
+    width: 170px;
+    margin: 0 auto;
+}
+
+form div input {
+    width: 100%;
+}
+
+.Email{
+    margin: 0 0 5px 2px;
+    text-align: left;
+}
+
+.Password {
+    margin: 10px 0 5px 2px;
+    text-align: left;
+}
+
+.LoginBtn{
+    width: 170px;
+}
+
+.Loginunder{
+    position: relative;
+    left: 165px;
+    color: black;
+    margin-right: 40px;
+}
+
+.Loginunder:hover{
+text-decoration: none;
+}
