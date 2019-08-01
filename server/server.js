@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const port = 5000;
 
+global.mydb = require('./dbconnection.js');
+
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
 
@@ -20,7 +22,8 @@ const gamelist = require('./router/gamelist.js');
 app.use('/gamelist',gamelist);
 const exchange = require('./router/exchange.js');
 app.use('/exchange',exchange);
-
+const authEmail = require('./router/authEmail.js');
+app.use('/auth',authEmail);
 
 
 app.listen(port, ()=>{

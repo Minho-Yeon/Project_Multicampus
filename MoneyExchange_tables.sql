@@ -11,8 +11,8 @@ CREATE TABLE Users_TB (
     created_at DATETIME default current_timestamp,
     update_at DATETIME,
     role VARCHAR(20) default 'User',
-    money_platform INT not null,
-    image_path VARCHAR(100)
+    money_platform INT default 100,
+    image_path VARCHAR(100) default './jpg/basicprofile.jpg'
 );
 
 CREATE TABLE NexonInfo_TB (

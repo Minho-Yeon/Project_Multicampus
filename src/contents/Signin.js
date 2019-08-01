@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import './Signin.scss';
 class Signin extends Component{
     render(){
         return(
