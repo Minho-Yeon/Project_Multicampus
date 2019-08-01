@@ -10,13 +10,15 @@
     "node-sass": "^4.12.0",
     "nodemailer": "^6.3.0",
     "nodemon": "^1.19.1",
+    "open-color": "^1.7.0",
     "pbkdf2-password": "^1.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "reactstrap": "^8.0.1",
-    "sass": "^1.22.7"
+    "sass": "^1.22.9",
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,5 +42,4 @@
     ]
   },
   "proxy": "http://localhost:5000"
-  
 }
