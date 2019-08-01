@@ -6,11 +6,14 @@ import './Login.scss';
 import axios from 'axios';
 
 class Login extends Component{
+    constructor(props){
+        super(props);
+        this.logininfo={};  //로그인 시도 정보 담아오는 그릇-민호
+    }
     handleChange = (e) => { //로그인 시도 정보를 받아오는 메소드 -민호
-        const {logininfo} = this;
         const { name, value } = e.target;
         console.log('name:'+name+' value'+value);
-        logininfo[name]= value;
+        this.logininfo[name]= value;
         e.preventDefault();
     }
     tryLogin = ()=>{    //로그인시도 메소드 -민호
