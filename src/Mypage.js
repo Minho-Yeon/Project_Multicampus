@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import Submy from './contents/Submy';
+import { Link } from 'react-router-dom';
+import './Mypage.scss';
 
 class Mypage extends Component{
     render(){
@@ -17,6 +19,7 @@ class Mypage extends Component{
                 <div><Submy img="./jpg/arche.jpg" alt="" /></div>
                 <div><Submy img="./jpg/tera.jpg" alt="" /></div>
                 <div><Submy img="./jpg/elsword.jpg" alt="" /></div>
+                <div ><Link className="changeLink" to="/exchange">결제페이지</Link></div>
             </div>
         )
     }

@@ -12,7 +12,6 @@ class Chart extends Component {
       console.log("this.state:", this.state);
       
     }
-
     toggle() {
       this.setState(prevstate=>({ 
           collapse: !prevstate.collapse 
@@ -38,7 +37,8 @@ class Chart extends Component {
         fontSize: '30px',
         border: '1px solid black',
         borderRadius:'12px',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        boxShadow:'3px 3px #c1c1c1'
       },
       change = {
         fontSize: '15px',
@@ -60,10 +60,7 @@ class Chart extends Component {
               <Collapse isOpen={this.state.collapse}>
                 <Card>
                   <CardBody>
-                    Anim pariatur cliche reprehenderit,
-                     enim eiusmod high life accusamus terry richardson ad squid. Nihil
-                     anim keffiyeh helvetica, craft beer labore wes anderson cred
-                     nesciunt sapiente ea proident.
+                    <p>게임소개</p>
                     <button onClick={()=>{this.isOpen()}}>결제하기</button>
                 </CardBody>
                 </Card>
