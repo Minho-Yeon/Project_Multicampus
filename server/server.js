@@ -32,6 +32,8 @@ const changepassword = require('./router/changepassword.js');
 app.use('/server/changepassword',changepassword);
 const auth = require('./router/auth.js')
 app.use('/server/auth',auth)
+const test = require('./router/test.js');
+app.use('/server/test',test);
 
 
 app.listen(port, ()=>{
