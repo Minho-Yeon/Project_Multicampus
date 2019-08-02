@@ -25,6 +25,7 @@ module.exports = {
         let user_data = await api.getUsersinfo(userEmail);
         let salt = user_data[0].salt;
         let encrypt = security.Cipher(userEmail, salt);
+        console.log(encrypt)
 
         //user이메일에 보내는 메세지 
         let message = ` <br>
@@ -36,7 +37,7 @@ module.exports = {
                         clicking the button below.</p>
                         <br>
                         <br>
-                        <a href='http://localhost/login/${encrypt}/${salt}'><button>confirm your email</button></a> 
+                        <a href='http://localhost:5000/server/auth/${encrypt}/${salt}'><button>confirm your email</button></a> 
                         <br>`
          
         return message
