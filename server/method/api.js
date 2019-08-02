@@ -2,19 +2,24 @@
 module.exports = {
 
 
-    checkemail:(user_email)=>{  //데이터베이스에 이메일 존재여부 체크 - 민호
-        let query='SELECT EXISTS (SELECT * FROM Users_TB WHERE email_user=?) as success';
-        const {rows,field}=mydb.query(query,[user_email],(err,result)=>{
-            if(err) throw error;
-            console.log(rows);
-        });
-        return true;
+
+    checkemail:async (user_email)=>{
+        let check_stmt='SELECT EXISTS (SELECT * FROM Users_TB WHERE email_user=?) as success';
+        const [row, fields] = await mydb.query(check_stmt, [user_email]);
+        console.log(rows);
+        return row;
     },
 
-    // getUsersinfo: (user_email) => {
-    //     return Users_TB;
-    // },
-    // getGameMoney: (idx_user) => {
+    getUsersinfo: async (user_email) => {
+        let select_stmt='SELECT * FROM Users_TB WHERE email_user= ?';
+        const [rows, fields] = await mydb.query(select_stmt, [user_email]);        
+        console.log("1111", rows);
+   
+        return rows;
+    },
+
+
+    // getGameMoney: (idx_user) => {f
     //     return Characters_TB;
     // },
     // getExchangeRate:(game)=>{
