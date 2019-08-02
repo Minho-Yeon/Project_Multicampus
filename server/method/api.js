@@ -2,20 +2,23 @@
 module.exports = {
 
 
-    checkemail:(user_email)=>{
-        let query='SELECT EXISTS (SELECT * FROM Users_TB WHERE email_user=?) as success';
-        mydb.query(query,[user_email],(err,result)=>{
-            if(err) throw error;
-            console.log(result);
-
-        });
-        return true;
+    checkemail:async (user_email)=>{
+        let check_stmt='SELECT EXISTS (SELECT * FROM Users_TB WHERE email_user=?) as success';
+        const [row, fields] = await mydb.query(check_stmt, [yser_email]);
+        
+        return row
     },
 
-    // getUsersinfo: (user_email) => {
-    //     return Users_TB;
-    // },
-    // getGameMoney: (idx_user) => {
+    getUsersinfo: async (user_email) => {
+        let select_stmt='SELECT * FROM Users_TB WHERE email_user= ?';
+        const [rows, fields] = await mydb.query(select_stmt, [user_email]);        
+        console.log("1111", rows);
+   
+        return rows;
+    },
+
+
+    // getGameMoney: (idx_user) => {f
     //     return Characters_TB;
     // },
     // getExchangeRate:(game)=>{
