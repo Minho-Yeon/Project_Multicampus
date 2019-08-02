@@ -7,28 +7,27 @@ import InputWithLabelButton from './auth/InputWithLabelButton';
 import InputWithButton from './auth/InputWithButton';
 import './Signin.scss';
 import request from './Request';
-import axios from 'axios';
 
 class Signin extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.Signininfo={}; //회원정보를 담아올 그릇-민호
-        this.state={    
-            isdisabled:false,   //넥슨 인증시 버튼 비활성화를 위한 인자 -민호
-            isdisabled2:true
+        this.Signininfo = {}; //회원정보를 담아올 그릇-민호
+        this.state = {
+            isdisabled: false,   //넥슨 이메일 입력란 disabled인자 -민호
+            isdisabled2: true    //넥슨 인증코드 입력란 disabled인자 - 민호
         }
     }
     handleChange = (evt) => {   //인자값 받아오기-민호
         const { name, value } = evt.target;
-        if(name==='confirmcode'){
-            this.nexoncode=evt.target;
+        if (name === 'confirmcode') {
+            this.nexoncode = evt.target;
         }
-        if(name==="nexonemail"){
-            this.nexonemail=evt.target;
+        if (name === "nexonemail") {
+            this.nexonemail = evt.target;
             console.log(this.nexonemail.disabled);
         }
         console.log('name:' + name + '\n value: ' + value);
-        this.Signininfo[name]= value;
+        this.Signininfo[name] = value;
         evt.preventDefault();
     }
     trySignin = () => { //회원가입 메소드- 민호
@@ -56,16 +55,15 @@ class Signin extends Component {
             alert('넥슨 이메일이 인증 되지 않았습니다.');
             return;
         }
-        axios.post('/server/signin', this.Signininfo)   //서버에회원가입 요청-민호 
-            .then((c) => {
-                console.log(c.data);
-            })
-            .catch(err => {
-                console.error(err);
-            });
-
+        let issuccess = request('post', '/server/signin', this.Signininfo); //서버에회원가입 요청-민호 
+        console.log(issuccess.data.success);
+        if (issuccess.data.success) {
+            alert('회원가입 이메일을 전송하였습니다.');
+        } else {
+            alert('이미 가입한 이메일 입니다');
+        }
     }
-    
+
     sendCode = () => {
         console.log('넥슨 코드 요청');
         let regExp = /[a-z0-9]{2,}@nexon.com/i;
@@ -74,20 +72,21 @@ class Signin extends Component {
             alert('넥슨 이메일 형식이 아닙니다.');
             return;
         };
-        request('post', '/server/email/nexon', {'nexonemail':this.Signininfo.nexonemail});  //서버에 넥슨 이메일코드 전송요청-민호
+        request('post', '/server/email/nexon', { 'nexonemail': this.Signininfo.nexonemail });  //서버에 넥슨 이메일코드 전송요청-민호
         this.setState({
-            isdisabled2:false,
+            isdisabled2: false,
         });
     }
-    checkCode=()=>{ ////서버에 넥슨 코드 인증요청-민호
+    checkCode = () => { ////서버에 넥슨 코드 인증요청-민호
         console.log('넥슨코드 체크요청 보냄');
-        if(request('post','/server/checkcode',{'code':this.nexoncode.value})){
-            this.setState(prevstate=>({
-                isdisabled:!prevstate.disabled,
-                isdisabled2:true,
+        let issuccess = request('post', '/server/checkcode', { 'code': this.nexoncode.value });
+        if (issuccess.data.success) {
+            this.setState(prevstate => ({
+                isdisabled: !prevstate.disabled,
+                isdisabled2: true,
             }));
             alert("넥슨아이디 인증이 완료되었습니다.");
-        }else{
+        } else {
             alert('코드가 틀렸습니다.');
         }
     }
@@ -99,8 +98,8 @@ class Signin extends Component {
                     <InputWithLabel label="이름" name="username" placeholder="이름" onChange={this.handleChange} />
                     <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={this.handleChange} />
                     <InputWithLabel label="비밀번호 확인" name="passwordconfirm" placeholder="비밀번호 확인" type="password" onChange={this.handleChange} />
-                    <InputWithLabelButton label="넥슨이메일" name="nexonemail" placeholder="넥슨 이메일" onChange={this.handleChange} onClick={this.sendCode} disabled={this.state.isdisabled}/>
-                    <InputWithButton name="confirmcode" placeholder="넥슨 이메일 인증 코드" onChange={this.handleChange} onClick={this.checkCode} disabled={this.state.isdisabled2}/>
+                    <InputWithLabelButton label="넥슨이메일" name="nexonemail" placeholder="넥슨 이메일" onChange={this.handleChange} onClick={this.sendCode} disabled={this.state.isdisabled} />
+                    <InputWithButton name="confirmcode" placeholder="넥슨 이메일 인증 코드" onChange={this.handleChange} onClick={this.checkCode} disabled={this.state.isdisabled2} />
                     <AuthButton onClick={this.trySignin}>회원가입</AuthButton>
                     <RightAlignedLink to="/login">로그인</RightAlignedLink>
                 </AuthContent>

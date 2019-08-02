@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = 5000;
+const pool = require('./dbconnection.js')
 
-global.mydb = require('./dbconnection.js');
+
+global.mydb = pool.promise();
 
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
@@ -26,6 +28,12 @@ const email = require('./router/email.js');
 app.use('/server/email',email);
 const checkcode = require('./router/checkcode.js');
 app.use('/server/checkcode',checkcode);
+const changepassword = require('./router/changepassword.js');
+app.use('/server/changepassword',changepassword);
+const auth = require('./router/auth.js')
+app.use('/server/auth',auth)
+const test = require('./router/test.js');
+app.use('/server/test',test);
 
 
 app.listen(port, ()=>{

@@ -40,10 +40,10 @@ const Button = styled.button`
 `;
 
 
-const InputWithButton = ({  name, placeholder,onChange,onClick, isdisabled}) => (   //넥슨 코드 라인 부분-민호
+const InputWithButton = ({  name, placeholder,onChange,onClick, disabled}) => (   //넥슨 코드 라인 부분-민호
     <Wrapper>
-        <Input name={name} placeholder={placeholder} onChange={onChange} disabled={isdisabled}/>
-        <Button onClick={onClick} disabled={isdisabled}>확인</Button> 
+        <Input name={name} placeholder={placeholder} onChange={onChange} disabled={disabled}/>
+        <Button onClick={onClick} disabled={disabled}>확인</Button> 
     </Wrapper>
 );
 

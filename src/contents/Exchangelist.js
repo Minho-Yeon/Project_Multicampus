@@ -35,10 +35,22 @@ class Exchangelist extends Component {
 
         return (
             <div>
+<<<<<<< HEAD
                 <div id="relative">
                     <div className="openbox">
                         <img src="./jpg/maplestory.jpg" />
                         <input type="checkbox" className="checkbox" onClick={click} />
+=======
+                <div className="check" style={exlist}>
+                    <div>
+                        <img src="./jpg/maplestory.jpg" alt="" />
+                        메이플 스토리
+                        <form>
+                            <input className="checkbox" type="checkbox" onClick={click} />
+                        </form>
+                        <div className="hide">
+                        보일내용
+>>>>>>> origin/master
                     </div>
                     <div className="closebox">
                         <p>{this.props.number}</p>
