@@ -22,7 +22,7 @@ module.exports = {
     // 이메일 인증 메세지_ 다래
     createAuthMessage:  async(userName, userEmail) => {
         
-        let user_data = await api.getUsersinfo(userEmail);
+        let user_data = await api.getUsersinfo('Users_TB','email_user',userEmail);
         let salt = user_data[0].salt;
         let encrypt = security.Cipher(userEmail, salt);
         console.log(encrypt)
