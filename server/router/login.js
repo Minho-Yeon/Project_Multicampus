@@ -3,6 +3,7 @@ const hasher = require('pbkdf2-password')();
 const router = express.Router();
 const alert = require('alert-node');
 
+
 //password check
 function Auth(login_password, user){
     console.log(login_password, user)
@@ -26,7 +27,6 @@ function Auth(login_password, user){
         }
     });
 }
-
 // ***********  npm i -S alert-node 필요해요.
 router.post('/',(req,res)=>{
     console.log('/server/login요청 받음');
@@ -50,9 +50,6 @@ router.post('/',(req,res)=>{
             }
         }
     });
-
-
-    
 
 });
 
