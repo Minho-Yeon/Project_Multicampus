@@ -11,7 +11,7 @@ module.exports = {
     },
 
     getUsersinfo: async (search, user_email) => {
-        let select_stmt='SELECT * FROM Users_TB WHERE ${search}= ?';
+        let select_stmt=`SELECT * FROM Users_TB WHERE ${search}= ?`;
         const [rows, fields] = await mydb.query(select_stmt, [user_email]);        
         console.log("1111", rows);
    
