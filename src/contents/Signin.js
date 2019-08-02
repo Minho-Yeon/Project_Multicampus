@@ -15,6 +15,7 @@ class Signin extends Component {
         this.Signininfo={}; //회원정보를 담아올 그릇-민호
         this.state={    
             isdisabled:false,   //넥슨 인증시 버튼 비활성화를 위한 인자 -민호
+            isdisabled2:true
         }
     }
     handleChange = (evt) => {   //인자값 받아오기-민호
@@ -74,14 +75,21 @@ class Signin extends Component {
             return;
         };
         request('post', '/server/email/nexon', {'nexonemail':this.Signininfo.nexonemail});  //서버에 넥슨 이메일코드 전송요청-민호
+        this.setState({
+            isdisabled2:false,
+        });
     }
     checkCode=()=>{ ////서버에 넥슨 코드 인증요청-민호
         console.log('넥슨코드 체크요청 보냄');
         if(request('post','/server/checkcode',{'code':this.nexoncode.value})){
             this.setState(prevstate=>({
                 isdisabled:!prevstate.disabled,
+                isdisabled2:true,
             }));
-        };
+            alert("넥슨아이디 인증이 완료되었습니다.");
+        }else{
+            alert('코드가 틀렸습니다.');
+        }
     }
     render() {
         return (    //민호
@@ -92,7 +100,7 @@ class Signin extends Component {
                     <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={this.handleChange} />
                     <InputWithLabel label="비밀번호 확인" name="passwordconfirm" placeholder="비밀번호 확인" type="password" onChange={this.handleChange} />
                     <InputWithLabelButton label="넥슨이메일" name="nexonemail" placeholder="넥슨 이메일" onChange={this.handleChange} onClick={this.sendCode} disabled={this.state.isdisabled}/>
-                    <InputWithButton name="confirmcode" placeholder="넥슨 이메일 인증 코드" onChange={this.handleChange} onClick={this.checkCode} disabled={this.state.isdisabled}/>
+                    <InputWithButton name="confirmcode" placeholder="넥슨 이메일 인증 코드" onChange={this.handleChange} onClick={this.checkCode} disabled={this.state.isdisabled2}/>
                     <AuthButton onClick={this.trySignin}>회원가입</AuthButton>
                     <RightAlignedLink to="/login">로그인</RightAlignedLink>
                 </AuthContent>
