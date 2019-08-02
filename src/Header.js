@@ -34,7 +34,7 @@ class Header extends Component {
     logOut = () => {  //로그아웃 메소드 - 민호
         console.log('로그아웃 시도');
         localStorage.removeItem('logininfo');
-        this.props.history('/');
+        this.props.history.push('/');
     }
     menuSet = () => {       //로그인 여부에 따라 메뉴 출력 메소드-민호
         if (this.isLogin()) {
@@ -128,9 +128,9 @@ class Header extends Component {
             margin: '5px'
         }
 
-        var pbutton = {
-            textAlign: 'center'
-        }
+        // var pbutton = {
+        //     textAlign: 'center'
+        // }
         return (
             <div className="header">
                 <Link to="/"><p style={Header}><img className="mainicon" src="./jpg/nexonicon.jpg" alt="" />Nexon Trade</p></Link>
@@ -141,7 +141,7 @@ class Header extends Component {
                         <ModalBody style={modal}>
                             <div>
                                 <div className="uploadimg">
-                                    <img className="userinfoimg" src="./jpg/maplestory.jpg" />
+                                    <img className="userinfoimg" src="./jpg/maplestory.jpg" alt=""/>
                                     <AuthButton >이미지변경</AuthButton>
                                 </div>
                                 <div className="info">
