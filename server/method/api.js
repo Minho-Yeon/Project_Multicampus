@@ -10,8 +10,8 @@ module.exports = {
         return row;
     },
 
-    getUsersinfo: async (search, user_email) => {
-        let select_stmt=`SELECT * FROM Users_TB WHERE ${search}= ?`;
+    getUsersinfo: async (table, requirements, user_email) => {
+        let select_stmt=`SELECT * FROM ${table} WHERE ${requirements}= ?`;
         const [rows, fields] = await mydb.query(select_stmt, [user_email]);        
         console.log("1111", rows);
    
