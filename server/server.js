@@ -29,7 +29,7 @@ const checkcode = require('./router/checkcode.js');
 app.use('/server/checkcode',checkcode);
 const changepassword = require('./router/changepassword.js');
 app.use('/server/changepassword',changepassword);
-const auth = requiere('./router/auth.js')
+const auth = require('./router/auth.js')
 app.use('/server/auth',auth)
 
 app.listen(port, ()=>{
