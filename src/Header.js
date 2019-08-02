@@ -11,17 +11,45 @@ class Header extends Component {
             modal: false,
         }
     }
-    isOpen = () => {
-
+    isOpen = () => {   
         this.setState(prevstate => ({
             modal: !prevstate.modal
         }))
-
     }
     isToggle = () => {
         this.props.isToggle();
     }
+    isLogin = () => {   // 로그인 여부 판단메소드 - 민호
+        console.log("1",localStorage);
+        if (localStorage.getItem('email_user')!==null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    menuSet = () => {       //로그인 여부에 따라 메뉴 출력 메소드-민호
+        if (this.isLogin) {
+            return (
+                <>
+                    <li><Link to="/signin">회원가입</Link></li>
+                    <li><Link to="/login">로그인</Link></li>
+                </>
+            );
+
+        } else {
+            return (
+                <>
+                    <li onClick={() => {this.isToggle()}}>마이페이지</li>
+                    <li>로그아웃</li>
+                    <li onClick={() => {this.isOpen()}}>회원정보수정</li>
+                </>
+            );
+        }
+
+    }
     render() {
+        let menu = this.menuSet();  //로그인에 따라 메뉴 출력 - 민호
+
         var Header = {
             fontSize: '30px',
             fontWeight: '1000',
@@ -34,38 +62,39 @@ class Header extends Component {
             transform: 'translate(-50%,-50%)',
             color: 'black'
         }
-       var modal ={
-           backgroundColor: '#f2f2f2'
-        
+        var modal = {
+            backgroundColor: '#f2f2f2'
+
         }
-        var infoinput={
+        var infoinput = {
             width: '100%',
             height: '25px',
         }
-        var pstyle={
-            fontSize:'12px',
+        var pstyle = {
+            fontSize: '12px',
             margin: '5px'
         }
 
-        var pbutton ={
+        var pbutton = {
             textAlign: 'center'
         }
         return (
             <div className="header">
                 <Link to="/"><p style={Header}><img className="mainicon" src="./jpg/nexonicon.jpg" alt="" />Nexon Trade</p></Link>
                 <ul className="form">
-                    <li><Link to="/signin">회원가입</Link></li>
+                    {/* <li><Link to="/signin">회원가입</Link></li>
                     <li><Link to="/login">로그인</Link></li>
                     <li onClick={() => { this.isToggle() }}>마이페이지</li>
                     <li>로그아웃</li>
-                    <button onClick={() => { this.isOpen() }}>회원정보수정</button>
+                    <li onClick={() => { this.isOpen() }}>회원정보수정</li> */}
+                    {menu}
                     <Modal className="userinfo" isOpen={this.state.modal} toggle={this.isOpen}>
-                        <ModalHeader  style={modal} toggle={this.isOpen}>회원정보</ModalHeader>
-                        <ModalBody  style={modal}>
+                        <ModalHeader style={modal} toggle={this.isOpen}>회원정보</ModalHeader>
+                        <ModalBody style={modal}>
                             <div>
                                 <div className="uploadimg">
-                                <img className="userinfoimg" src="./jpg/maplestory.jpg" />
-                                <AuthButton >이미지변경</AuthButton>
+                                    <img className="userinfoimg" src="./jpg/maplestory.jpg" />
+                                    <AuthButton >이미지변경</AuthButton>
                                 </div>
                                 <div className="info">
                                     <p>이름: 황상욱</p>
