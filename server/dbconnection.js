@@ -1,10 +1,13 @@
-const mysql = require('mysql');
-const connection = mysql.createPool({
-host: '70.10.50.176',
+// const promisePool;
+const mysql = require('mysql2');
+
+const pool = mysql.createPool({
+host: 'localhost',
 port: 3306,
 user: 'root',
-password: '123456',
+password: 'your_new_password',
 database: 'MONEYEXCHANGE'
 });
 
-module.exports=connection;
+
+module.exports= pool;

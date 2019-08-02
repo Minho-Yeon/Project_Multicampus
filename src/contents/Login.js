@@ -3,8 +3,8 @@ import AuthButton from './auth/AuthButton.js';
 import AuthContent from './auth/AuthContent.js';
 import InputWithLabel from './auth/InputWithLabel.js';
 import './Login.scss';
-import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import request from './Request.js';
 class Login extends Component{
     constructor(props){
         super(props);
@@ -24,19 +24,14 @@ class Login extends Component{
             alert('이메일 형식이 아닙니다.');
             return;
         };
-        axios.post('/server/login',{    //서버에 로그인 요청- 민호
-            email:this.logininfo.email,
-            password:this.logininfo.password
-        })
-        .then((c)=>{
-            if(c.data.userinfo!==undefined){    
-                localStorage.setItem('logininfo',c.data.userinfo);//로컬 스토리지에 로그인 정보 저장-민호
-                this.props.history.push('/');   //메인페이지로 이동-민호
-            }
-        })
-        .catch(err=>{
-            console.error(err);
-        });
+        
+        let issuccess=request('post','/server/login',this.logininfo); //서버에 로그인 요청- 민호
+        if(issuccess.data.userinfo!==undefined){
+            localStorage.setItem('logininfo',issuccess.data.userinfo);//로컬 스토리지에 로그인 정보 저장-민호
+            this.props.history.push('/');   //메인페이지로 이동-민호
+        }else{
+            alert(issuccess.data.message);  //로그인 실패시 메세지-민호
+        }
         
     }
     render(){

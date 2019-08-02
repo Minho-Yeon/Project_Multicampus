@@ -26,7 +26,8 @@ const email = require('./router/email.js');
 app.use('/server/email',email);
 const checkcode = require('./router/checkcode.js');
 app.use('/server/checkcode',checkcode);
-
+const changepassword = require('./router/changepassword.js');
+app.use('/serer/changepassword',changepassword);
 
 app.listen(port, ()=>{
     console.log(port+"번호로 대기 중...");

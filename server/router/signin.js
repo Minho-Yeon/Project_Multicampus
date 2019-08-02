@@ -12,6 +12,7 @@ router.post('/',(req,res)=>{
 
     if(api.checkemail(userinfo.email)){ //db에서 email 존재여부 확인-민호
         console.log('회원가입 불가능');
+        res.json({success:false});
         return;
     }else{
         console.log('회원가입 가능');
@@ -25,6 +26,9 @@ router.post('/',(req,res)=>{
             }
         });
         save.plusUser(userinfo);    //db정보 저장 메소드-민호
+        auth.SendEmail(userinfo.name, userinfo.email, false);
+        res.json({success:true});
+        return;
     };
     
 });
