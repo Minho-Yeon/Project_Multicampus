@@ -4,7 +4,7 @@ import AuthContent from './auth/AuthContent.js';
 import InputWithLabel from './auth/InputWithLabel.js';
 import './Login.scss';
 import axios from 'axios';
-
+import { withRouter } from 'react-router-dom';
 class Login extends Component{
     constructor(props){
         super(props);
@@ -52,4 +52,4 @@ class Login extends Component{
         )
     }
 }
-export default Login;
+export default withRouter(Login);

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.scss';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import AuthButton from './contents/auth/AuthButton.js';
+import { withRouter } from 'react-router-dom';
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -21,28 +22,34 @@ class Header extends Component {
     }
     isLogin = () => {   // 로그인 여부 판단메소드 - 민호
         console.log("1",localStorage);
-        if (localStorage.getItem('email_user')!==null) {
+        if (localStorage.getItem('logininfo')) {
             return true;
         } else {
             return false;
         }
     }
+    logOut = ()=>{  //로그아웃 메소드 - 민호
+        console.log('로그아웃 시도');
+        localStorage.removeItem('logininfo');
+        this.props.history('/');
+    }
     menuSet = () => {       //로그인 여부에 따라 메뉴 출력 메소드-민호
-        if (this.isLogin) {
+        if (this.isLogin()) {
             return (
                 <>
-                    <li><Link to="/signin">회원가입</Link></li>
-                    <li><Link to="/login">로그인</Link></li>
+                    <li onClick={() => {this.isToggle()}}>마이페이지</li>
+                    <li onClick={this.logOut}>로그아웃</li>
+                    <li onClick={this.isOpen}>회원정보수정</li>
                 </>
             );
 
         } else {
             return (
                 <>
-                    <li onClick={() => {this.isToggle()}}>마이페이지</li>
-                    <li>로그아웃</li>
-                    <li onClick={() => {this.isOpen()}}>회원정보수정</li>
+                    <li><Link to="/signin">회원가입</Link></li>
+                    <li><Link to="/login">로그인</Link></li>
                 </>
+                
             );
         }
 
@@ -82,11 +89,6 @@ class Header extends Component {
             <div className="header">
                 <Link to="/"><p style={Header}><img className="mainicon" src="./jpg/nexonicon.jpg" alt="" />Nexon Trade</p></Link>
                 <ul className="form">
-                    {/* <li><Link to="/signin">회원가입</Link></li>
-                    <li><Link to="/login">로그인</Link></li>
-                    <li onClick={() => { this.isToggle() }}>마이페이지</li>
-                    <li>로그아웃</li>
-                    <li onClick={() => { this.isOpen() }}>회원정보수정</li> */}
                     {menu}
                     <Modal className="userinfo" isOpen={this.state.modal} toggle={this.isOpen}>
                         <ModalHeader style={modal} toggle={this.isOpen}>회원정보</ModalHeader>
@@ -114,4 +116,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);

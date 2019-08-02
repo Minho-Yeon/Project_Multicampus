@@ -14,8 +14,8 @@ class Signin extends Component {
         super(props);
         this.Signininfo={}; //회원정보를 담아올 그릇-민호
         this.state={    
-            isdisabled:false,   //넥슨 인증시 버튼 비활성화를 위한 인자 -민호
-            isdisabled2:true
+            isdisabled:false,   //넥슨 이메일 입력란 disabled인자 -민호
+            isdisabled2:true    //넥슨 인증코드 입력란 disabled인자 - 민호
         }
     }
     handleChange = (evt) => {   //인자값 받아오기-민호

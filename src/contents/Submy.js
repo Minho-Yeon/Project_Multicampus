@@ -13,12 +13,12 @@ class Submy extends Component {
     }
     click(){
         var ctrlSelect = document.getElementById("lstFavorite");
-        if( ctrlSelect.selectedIndex == 0){
+        if( ctrlSelect.selectedIndex === 0){
             alert("서버1");
         // DB에서 서버1에 해당하는 캐릭터의 이름과 보유 머니를 불러와 주세요.
 
             ctrlSelect.focus();
-        }else if(ctrlSelect.selectedIndex == 1){
+        }else if(ctrlSelect.selectedIndex === 1){
             window.alert("서버2" );
         // DB에서 서버2에 해당하는 캐릭터의 이름과 보유 머니를 불러와 주세요.
 
