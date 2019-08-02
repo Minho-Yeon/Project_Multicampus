@@ -2,6 +2,11 @@ CREATE DATABASE MONEYEXCHANGE;
 
 USE MONEYEXCHANGE;
 
+CREATE TABLE SecurityCode_TB (
+	idx_code INT primary key auto_increment,
+    security_code INT
+);
+
 CREATE TABLE Users_TB (
 	idx_user INT primary key auto_increment,
     name_user VARCHAR(40) not null,
@@ -10,7 +15,7 @@ CREATE TABLE Users_TB (
     salt VARCHAR(200),
     created_at DATETIME default current_timestamp,
     update_at DATETIME,
-    role VARCHAR(20) default 'User',
+    role VARCHAR(20) default 'None',
     money_platform INT default 100,
     image_path VARCHAR(100) default './jpg/basicprofile.jpg'
 );
@@ -20,6 +25,7 @@ CREATE TABLE NexonInfo_TB (
     idx_user INT not null,
     email_nexon VARCHAR(40) not null,
     foreign key (idx_user) references Users_TB (idx_user)
+    on delete cascade
 );
 
 CREATE TABLE Games_TB (
@@ -34,8 +40,10 @@ CREATE TABLE Characters_TB (
     idx_game INT,
     name_character VARCHAR(100) not null,
     money_character INT not null,
-    foreign key (idx_user) references Users_TB (idx_user),
+    foreign key (idx_user) references Users_TB (idx_user)
+    on delete cascade,
     foreign key (idx_game) references GAMES_TB (idx_game)
+    on delete cascade
 );
 
 CREATE TABLE ExchangeRate_TB (
@@ -43,6 +51,7 @@ CREATE TABLE ExchangeRate_TB (
     idx_game INT,
     exchange_rate INT not null,
     foreign key (idx_game) references GAMES_TB (idx_game)
+    on delete cascade
 );
 
 CREATE TABLE Exchange_TB (
