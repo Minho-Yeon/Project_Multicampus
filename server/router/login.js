@@ -3,6 +3,7 @@ const hasher = require('pbkdf2-password')();
 const router = express.Router();
 const alert = require('alert-node');
 
+
 //password check
 function Auth(login_password, user){
     console.log(login_password, user)
@@ -16,15 +17,16 @@ function Auth(login_password, user){
         } else {
             if(hash === user[0].password){
                 let userInfo = {}
-                userInfo[user[0].idx_user] = user[0]
+                userInfo['email_user'] = user[0].email_user
+                userInfo['name_user'] = user[0].name_user
+                userInfo['money_platform'] = user[0].money_platform
                 return JSON.stringify(userInfo)
             } else {
-                alert('비밀번호가 잘못되었습니다.');
+                alert('비밀번호가 잘못되었습니다.')
             }
         }
     });
 }
-
 // ***********  npm i -S alert-node 필요해요.
 router.post('/',(req,res)=>{
     console.log('/server/login요청 받음');
@@ -49,24 +51,17 @@ router.post('/',(req,res)=>{
         }
     });
 
-    
+
 });
 
 
 // *********************  return 형태
-// {1: {
-//     idx_user: 1,
+// {
 //     name_user: 'aa',
 //     email_user: 'admin@admin.com',
-//     password_user: 'aa',
-//     salt: 'aa',
-//     created_at: 2019-07-31T13:18:36.000Z,
-//     update_at: null,
-//     role: 'User',
 //     money_platform: 100,
-//     image_path: null
 //   }
-// }
+// 
 
 
 module.exports= router;
