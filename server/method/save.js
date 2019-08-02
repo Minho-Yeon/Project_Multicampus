@@ -12,11 +12,9 @@ module.exports = {
         let query3 = 'INSERT INTO NexonInfo_TB (email_nexon, idx_user) VALUES (?,?)';
         let {result3,field3}=await mydb.query(query3, [userinfo.nexonid ,result2[0].idx_user]);
         console.log(result3);
-
-
     },
-    save_newpassword:()=>{
-
+    save_newpassword:async()=>{
+        
     },
     updateUsers: (userinfo) => {
 

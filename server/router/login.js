@@ -28,7 +28,7 @@ function Auth(login_password, user){
     });
 }
 // ***********  npm i -S alert-node 필요해요.
-router.post('/',(req,res)=>{
+router.post('/',async (req,res)=>{
     console.log('/server/login요청 받음');
     console.log(req.body)
 
@@ -36,20 +36,13 @@ router.post('/',(req,res)=>{
     let login_password = req.body.password;
 
     // serch user from Users_TB
-    let sql_select = 'SELECT * FROM Users_TB WHERE email_user = ?'
-    mydb.query(sql_select, login_email, function(err, user, fields){
-        if(err){
-            console.log(err);
-        } 
-        else {
-            console.log(user);
-            if(!user[0]){
-                res.json({'message':'회원이 아닙니다. 이메일을 확인해주세요.'});
-            } else {
-                Auth(login_password, user);
-            }
-        }
-    });
+    let user= await api.getUsersinfo(login_email);
+    if(user[0]){
+        Auth(login_password, user);
+    }
+    else{
+        res.json({'message':'회원이 아닙니다. 이메일을 확인해주세요.'});
+    }
 
 });
 
