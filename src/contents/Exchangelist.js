@@ -32,7 +32,7 @@ class Exchangelist extends Component {
             <div>
                 <div className="check" style={exlist}>
                     <div>
-                        <img src="./jpg/maplestory.jpg" />
+                        <img src="./jpg/maplestory.jpg" alt="" />
                         메이플 스토리
                         <form>
                             <input className="checkbox" type="checkbox" onClick={click} />
