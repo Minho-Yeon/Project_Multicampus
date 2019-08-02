@@ -1,7 +1,7 @@
 const express = require('express');     //민호
 const router = express.Router();
 const hasher = require('pbkdf2-password');
-
+const auth = require('./authEmail.js');
 router.post('/',async (req,res)=>{
     console.log('/server/signin요청 받음');
     let userinfo={};                //회원가입 요청 받은 값 저장-민호
