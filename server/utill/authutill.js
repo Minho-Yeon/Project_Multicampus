@@ -1,4 +1,3 @@
-const nodemailer = require('nodemailer');
 const api = require('../method/api.js')
 const security = require('./security.js')
 
