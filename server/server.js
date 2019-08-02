@@ -4,11 +4,7 @@ const cors = require('cors');
 const port = 5000;
 const pool = require('./dbconnection.js')
 
-<<<<<<< HEAD
-const pool = require('./dbconnection.js');
 
-=======
->>>>>>> 63cca945cea98e52409594c11b2acef7fcae7adc
 global.mydb = pool.promise();
 
 global.api=require('./method/api.js');
