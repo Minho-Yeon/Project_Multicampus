@@ -21,14 +21,16 @@ class Header extends Component {
     }
     isLogin = () => {   // 로그인 여부 판단메소드 - 민호
         console.log("1",localStorage);
-        if (localStorage.getItem('email_user')!==null) {
-            return true;
-        } else {
-            return false;
-        }
+        // if (localStorage.getItem('email_user')!==null) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        return false;
     }
     menuSet = () => {       //로그인 여부에 따라 메뉴 출력 메소드-민호
-        if (this.isLogin) {
+        console.log(this.isLogin);
+        if (this.isLogin()) {
             return (
                 <>
                     <li><Link to="/signin">회원가입</Link></li>
