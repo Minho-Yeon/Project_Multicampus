@@ -1,7 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const info = require('./saveNexonInfo.js')
-const auth = require('./authEmail.js');
+const crypto = require('crypto');
 
 router.get('/', async (req,res)=>{
     console.log('/server/test요청 받음');
@@ -21,6 +20,10 @@ router.get('/', async (req,res)=>{
     //     console.log('확인')
     //     save.deletedb('SecurityCode_TB', 'nexon_email', 'admin@admin.com');
     // };
+
+
+ 
+   
     res.end();
 });
 module.exports = router;

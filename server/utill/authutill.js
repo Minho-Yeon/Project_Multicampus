@@ -8,7 +8,14 @@ module.exports = {
     createCodeMessage: async () => {
 
         let code = {};
-        let auth_code = await Math.floor(Math.random() * 9000 ) + 1000 // 1000 ~ 10000사이의 4자리 랜덤 숫자 생성
+        let auth_code = '';
+        let auth_num = 0;
+
+        for (var num = 0; num < 4; num++ ) {
+            auth_num = await Math.floor((Math.random() * 9));
+            auth_code += String(auth_num)
+        }
+        
         // user 이메일에 보내는 메세지
         let message_code = ` <br>
                         <h1>Please confirm your Nexon email</h1>
@@ -30,9 +37,11 @@ module.exports = {
         let user_data = await api.getrow('Users_TB','email_user',userEmail);
         let salt = user_data.salt;
         let encrypt = await security.Cipher(userEmail, salt);
-        console.log(encrypt)
+        let encrypt_check = encrypt.split('/').join('-');
+        let salt_check = salt.split('/').join('-');
+        console.log(encrypt_check)
 
-        let url = `http://${ipaddress}:5000/server/auth/${encrypt}/${salt}`
+        let url = `http://${ipaddress}:5000/server/auth/${encrypt_check}/${salt_check}`
         //user이메일에 보내는 메세지 
         let message = `<br>
                         <h1>Please confirm your email address</h1> 
