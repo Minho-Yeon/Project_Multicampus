@@ -14,7 +14,11 @@ const api= {
         }
         
     },
-
+    gettable:async(table)=>{
+        let query=`SELECT * FROM ${table}`;
+        const [rows,fields]=await mydb.query(query);
+        return rows;
+    },
     getrow: async (table, requirements, value) => {
         let select_stmt=`SELECT * FROM ${table} WHERE ${requirements}= "${value}"`;
         const [rows, fields] = await mydb.query(select_stmt);        

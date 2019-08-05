@@ -1,11 +1,14 @@
-insert into Games_TB (name_game) value('메이플스토리');
-insert into Games_TB (name_game) value('메이플스토리2');
-insert into Games_TB (name_game) value('던전앤파이터');
-insert into Games_TB (name_game) value('마비노기');
-insert into Games_TB (name_game) value('천애명월도');
-insert into Games_TB (name_game) value('테일즈위버');
-insert into Games_TB (name_game) value('바람의나라');
-insert into Games_TB (name_game) value('아키에이지');
-insert into Games_TB (name_game) value('테라');
-insert into Games_TB (name_game) value('엘소드');
+use MONEYEXCHANGE;
+
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(1, 3000);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(2, 1250);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(3, 170);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(4, 100);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(5, 250);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(6, 1100);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(7, 1300);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(8, 2000);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(9, 2);
+insert into ExchangeRate_TB (idx_game, exchange_rate) value(10, 2900);
+
 

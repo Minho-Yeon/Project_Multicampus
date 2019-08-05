@@ -25,11 +25,16 @@ require('dotenv').config();
 global.mydb = pool.promise();
 mongodb();
 
+
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
-global.ipaddress= 'localhost';
-
-
+global.ipaddress= '70.12.50.176';
+global.gamelist;
+const gamedata=async ()=>{
+    gamelist = await api.gettable('games_tb')
+    console.log(gamelist);
+};
+gamedata();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
@@ -41,8 +46,8 @@ const login = require('./router/login.js');
 app.use('/server/login',login);
 const signin = require('./router/signin.js');
 app.use('/server/signin',signin);
-const gamelist = require('./router/gamelist.js');
-app.use('/server/gamelist',gamelist);
+const character = require('./router/character.js');
+app.use('/server/character',character);
 const exchange = require('./router/exchange.js');
 app.use('/server/exchange',exchange);
 const email = require('./router/email.js');
@@ -51,6 +56,8 @@ const checkcode = require('./router/checkcode.js');
 app.use('/server/checkcode',checkcode);
 const changepassword = require('./router/changepassword.js');
 app.use('/server/changepassword',changepassword);
+const gameinfo = require('./router/gameinfo.js');
+app.use('/server/gameinfo',gameinfo);
 // 이메일 인증 후 db에 저장된 user인지 확인
 const auth = require('./router/auth.js')
 app.use('/server/auth',auth)

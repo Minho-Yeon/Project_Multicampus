@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const api = require('../method/api.js')
-const save = require('../method/save.js')
 
 // 거래요청시 character 테이블과  users 테이블 money update_ 다래(미완성)
 router.get('/',async (req,res)=>{

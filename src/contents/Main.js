@@ -4,11 +4,13 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link} from 'react-router-dom'
 import './Main.scss';
+import request from './Request';
 class Main extends Component {
     constructor(props){
         super(props);
         this.state={
             modal:false,
+            gamelist:"",
         }
     }
     isOpen=()=>{
@@ -16,6 +18,13 @@ class Main extends Component {
         this.setState(prevstate=>({
             modal:!prevstate.modal,
         }));
+    }
+    componentDidMount=async()=>{
+        let list = await request('get','/server/gamelist',{});
+        
+        this.setState({
+            gamelist:list
+        });
     }
     render() {
         return (
