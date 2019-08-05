@@ -27,6 +27,7 @@ router.get('/:encrypt_data01/:encrypt_data02/:salt', async (req, res)=> {
     // db에 저장되어 있지 않으면 message 보여줌
     if(decrypt == user_data['email_user']){
         await saveCharacter(nexon_email);
+        await save.updatedb('Users_TB',[{'name':'role', 'value':'User'}],'idx_user',user_data['idx_user']);
         res.redirect(`http://${ipaddress}:3000/login`);
     } else {
         res.json({'message':'Nexon user가 아닙니다.'});
