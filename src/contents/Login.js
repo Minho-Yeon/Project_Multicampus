@@ -27,7 +27,7 @@ class Login extends Component{
         
         let issuccess=await request('post','/server/login',this.logininfo); //서버에 로그인 요청- 민호
         if(issuccess.data.userinfo!==undefined){
-            localStorage.setItem('logininfo',issuccess.data.userinfo);//로컬 스토리지에 로그인 정보 저장-민호
+            localStorage.setItem('logininfo',JSON.stringify(issuccess.data.userinfo));//로컬 스토리지에 로그인 정보 저장-민호
             this.props.history.push('/');   //메인페이지로 이동-민호
         }else{
             alert(issuccess.data.message);  //로그인 실패시 메세지-민호

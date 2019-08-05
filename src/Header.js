@@ -26,11 +26,11 @@ class Header extends Component {
     isLogin = () => {   // 로그인 여부 판단메소드 - 민호
 
         console.log("1", localStorage);
-        // if (localStorage.getItem('logininfo')) {
+        if (localStorage.getItem('logininfo')) {
         return true;
-        // } else {
-        // return false;
-        // }
+        } else {
+        return false;
+        }
     }
     logOut = () => {  //로그아웃 메소드 - 민호
         console.log('로그아웃 시도');

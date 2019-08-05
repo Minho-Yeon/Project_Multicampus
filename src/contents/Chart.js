@@ -11,6 +11,11 @@ class Chart extends Component {
       this.state = { collapse: false };
       
     }
+    handleChange=(e)=>{
+
+
+      e.preventDefault();
+    }
     toggle() {
       this.setState(prevstate=>({ 
           collapse:!prevstate.collapse 
@@ -61,6 +66,10 @@ class Chart extends Component {
                 <Card>
                   <CardBody>
                     <p style={gameintro}>{this.props.game_intro}</p>
+                    <div style={gameintro}>
+                    <label>플랫폼머니 :</label><input type="text" name="flatform" onChange={this.handleChange} />
+                    <label>게임머니 :</label><input type="text" name="game" onChange={this.handleChange} />
+                    </div>
                     <Button color="primary" onClick={()=>{this.isOpen()}}>결제하기</Button>
                 </CardBody>
                 </Card>
