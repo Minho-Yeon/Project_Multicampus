@@ -24,14 +24,17 @@ require('dotenv').config();
 
 global.mydb = pool.promise();
 mongodb();
-const {rows,field}=mydb.query(`SELECT * FROM games_tb`);
-global.gamelist = rows;
-console.log(gamelist);
+
+
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
 global.ipaddress= '70.12.50.176';
-
-
+global.gamelist;
+const gamedata=async ()=>{
+    gamelist = await api.gettable('games_tb')
+    console.log(gamelist);
+};
+gamedata();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
@@ -53,6 +56,8 @@ const checkcode = require('./router/checkcode.js');
 app.use('/server/checkcode',checkcode);
 const changepassword = require('./router/changepassword.js');
 app.use('/server/changepassword',changepassword);
+const gameinfo = require('./router/gameinfo.js');
+app.use('/server/gameinfo',gameinfo);
 // 이메일 인증 후 db에 저장된 user인지 확인
 const auth = require('./router/auth.js')
 app.use('/server/auth',auth)
