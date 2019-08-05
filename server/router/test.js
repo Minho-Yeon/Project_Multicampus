@@ -10,8 +10,9 @@ router.get('/', async (req,res)=>{
     // console.log(save.deletedb('hello','email_user','wptnzpq@gmail.com'));
     // var n = await api.checkemail("wptnzpq@gmail").
     // auth.SendEmail('aa', 'momo0735@naver.com', true);
-    var a = await info('9zAw2t@nexon.com');
-    console.log(a);
+    
+    // await save.deletedb('SecurityCode_TB', 'security_code', 1111);
+   
     res.end();
 });
 module.exports = router;
