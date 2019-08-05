@@ -10,9 +10,10 @@ class Auth extends Component {
         return (
             <div className="Auth">
                 <h1> 환영합니다! </h1>
+                <hr></hr>
                 <p> 계정이 확인되어 이제 활성화되었습니다. </p>
                 <p> 시작하려면 로그인하십시오. </p>
-                <Button className='btn' color="primary" size="lg" onClick={()=>{this.props.hitory.props('/login')}} block>Block level button</Button>
+                <Button className='btn' color="primary" size="lg" onClick={()=>{this.props.hitory.props('/login')}} block>Login</Button>
             </div>
         );
     }
