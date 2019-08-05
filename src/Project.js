@@ -7,6 +7,7 @@ import Login from './contents/Login';
 import Signin from './contents/Signin';
 import Mypage from './Mypage';
 import Footer from './Footer';
+import Auth from './Auth';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 class Project extends Component {
@@ -33,6 +34,7 @@ class Project extends Component {
                         <Route path="/exchange" component={Exchange} />
                         <Route path="/login" component={Login} />
                         <Route path="/signin" component={Signin} />
+                        <Route path="/auth" component={Auth} />
                     </div>
                     <div id="Mypage" style={{ width: this.state.isOpen ? '30%' : '0%'}}>{/*마이페이지 부분 */}
                         <Mypage />
