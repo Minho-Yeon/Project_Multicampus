@@ -1,23 +1,23 @@
 
 .relativeBox{
     position: relative;
-    border: 1px solid blue;
-    background-color: white;
-    margin: 10px auto;
+    border: 1px solid #000;
+    border-radius: 12px;
+    margin: 10px ;
     width: 50%;
     min-width: 500px;
     margin-bottom: 50px;
 }
 
 .openbox{
-    border: 1px solid green;
-    
     height: 100%;
    width: 100%;
 }
 
 .openbox img{ 
+    display: inline-block;
     width:40px;
+    margin-bottom: 10px;
 }
 
 .openbox .checkbox {
@@ -25,11 +25,45 @@
     top:13px;
     right: 10px;
 }
-
+.openbox h2{
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+.openbox .aaabbb{
+    width:100px;
+    display: inline-block;
+}
 .closebox{
     display: none; 
-    border: 1px solid red;
     height: 100%;
     width: 100%;
-    transition: 0.5s;
+}
+
+.datain{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.output{
+    display: inline-block;
+    border-style: none;
+    outline: none;
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.right  {
+    width:20px;
+    margin-left: 10px;
+}
+
+hr{
+    margin: 0px;
+}
+
+.closebox select{
+    margin-left: 5px;
 }
