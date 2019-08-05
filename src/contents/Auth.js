@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Auth.scss';
 import { Button } from 'reactstrap';
+import {withRouter} from 'react-router-dom';
 
 class Auth extends Component {
 
@@ -13,10 +14,10 @@ class Auth extends Component {
                 <hr></hr>
                 <p> 계정이 확인되어 이제 활성화되었습니다. </p>
                 <p> 시작하려면 로그인하십시오. </p>
-                <Button className='btn' color="primary" size="lg" onClick={()=>{this.props.hitory.props('/login')}} block>Login</Button>
+                <Button className='btn' color="primary" size="lg" onClick={()=>{this.props.history.push('/login')}} block>Login</Button>
             </div>
         );
     }
 }
 
-export default Auth;
+export default withRouter(Auth);

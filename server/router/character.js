@@ -14,9 +14,7 @@ router.get('/', async (req,res)=>{
     let user_info = await api.getrow_games(user_idx);
     let games = [];
 
-    
-
-    for ( num in user_info){
+    for (var num in user_info){
         let game = await api.getrow('Games_TB', 'idx_game', user_info[num].idx_game);
         games.push(game);
     }

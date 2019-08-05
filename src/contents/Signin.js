@@ -5,6 +5,7 @@ import AuthContent from './auth/AuthContent.js';
 import InputWithLabel from './auth/InputWithLabel.js';
 import InputWithLabelButton from './auth/InputWithLabelButton';
 import InputWithButton from './auth/InputWithButton';
+import {withRouter} from 'react-router-dom';
 import './Signin.scss';
 import request from './Request';
 
@@ -59,6 +60,7 @@ class Signin extends Component {
         console.log(issuccess.data.success);
         if (issuccess.data.success) {
             alert('회원가입 이메일을 전송하였습니다.');
+            this.props.history.push('/confirm');
         } else {
             alert('이미 가입한 이메일 입니다');
         }
@@ -86,6 +88,7 @@ class Signin extends Component {
                 isdisabled2: true,
             }));
             alert("넥슨아이디 인증이 완료되었습니다.");
+         
         } else {
             alert('코드가 틀렸습니다.');
         }
@@ -107,5 +110,5 @@ class Signin extends Component {
         )
     }
 }
-export default Signin;
+export default withRouter(Signin);
 //민호 19.08.01

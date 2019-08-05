@@ -30,7 +30,7 @@ module.exports = {
             // 재전송시 db에서 기존 auth_code 삭제
             let resend_check = await api.getrow('SecurityCode_TB', 'nexon_email', User_email)
             if(resend_check){
-                save.deletedb('SecurityCode_TB', 'nexon_email', User_email);
+                await save.deletedb('SecurityCode_TB', 'nexon_email', User_email);
             }
 
             // 인증코드 db저장, 5분 뒤 삭제_ 다래

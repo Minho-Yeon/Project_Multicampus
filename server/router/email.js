@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const auth = require('./authEmail');
 
 
 // *********** npm install nodemailer필요해요.
