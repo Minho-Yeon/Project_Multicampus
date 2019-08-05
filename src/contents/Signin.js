@@ -67,11 +67,11 @@ class Signin extends Component {
     sendCode = async () => {
         console.log('넥슨 코드 요청');
         let regExp = /[a-z0-9]{2,}@nexon.com/i;
-        if (!regExp.test(this.Signininfo.nexonemail)) {       //넥슨 이메일 정규식 체크- 민호
-            console.log('넥슨 이메일이 아닙니다');
-            alert('넥슨 이메일 형식이 아닙니다.');
-            return;
-        };
+        // if (!regExp.test(this.Signininfo.nexonemail)) {       //넥슨 이메일 정규식 체크- 민호
+        //     console.log('넥슨 이메일이 아닙니다');
+        //     alert('넥슨 이메일 형식이 아닙니다.');
+        //     return;
+        // };
         await request('post', '/server/email/nexon', { 'nexonemail': this.Signininfo.nexonemail });  //서버에 넥슨 이메일코드 전송요청-민호
         this.setState({
             isdisabled2: false,

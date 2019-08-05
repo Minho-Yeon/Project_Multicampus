@@ -65,7 +65,7 @@ class Chart extends Component {
               <Collapse isOpen={this.state.collapse}>
                 <Card>
                   <CardBody>
-                    <p style={gameintro}>{this.props.game_intro}</p>
+                    <p style={gameintro}>{this.props.gameintro}</p>
                     <div style={gameintro}>
                     <label>플랫폼머니 :</label><input type="text" name="flatform" onChange={this.handleChange} />
                     <label>게임머니 :</label><input type="text" name="game" onChange={this.handleChange} />
