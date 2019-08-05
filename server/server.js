@@ -29,7 +29,7 @@ global.gamelist = rows;
 console.log(gamelist);
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
-global.ipaddress= 'localhost';
+global.ipaddress= '70.12.50.176';
 
 
 app.use(cors());
@@ -43,8 +43,8 @@ const login = require('./router/login.js');
 app.use('/server/login',login);
 const signin = require('./router/signin.js');
 app.use('/server/signin',signin);
-const gamelist = require('./router/gamelist.js');
-app.use('/server/gamelist',gamelist);
+const character = require('./router/character.js');
+app.use('/server/character',character);
 const exchange = require('./router/exchange.js');
 app.use('/server/exchange',exchange);
 const email = require('./router/email.js');
