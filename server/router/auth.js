@@ -28,7 +28,7 @@ router.get('/:encrypt_data01/:encrypt_data02/:salt', async (req, res)=> {
     if(decrypt == user_data['email_user']){
         await saveCharacter(nexon_email);
         await save.updatedb('Users_TB',[{'name':'role', 'value':'User'}],'idx_user',user_data['idx_user']);
-        res.redirect(`http://${ipaddress}:3000/login`);
+        res.redirect(`http://${ipaddress}:3000/auth`);
     } else {
         res.json({'message':'Nexon user가 아닙니다.'});
     }    
