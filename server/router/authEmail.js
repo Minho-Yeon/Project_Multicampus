@@ -20,13 +20,10 @@ module.exports = {
             }
         });
 
-        
-
         if(is_nexon){
             Subject = 'Please confirm your Nexon Email';
             
-            // 인증코드와 메세지생성_ 다래
-            let code = await authutill.createCodeMessage();
+          let code = await authutill.createCodeMessage();
             console.log(code)
             Massage = code.message_code;
             let auth_code = code.auth_code;
@@ -34,7 +31,8 @@ module.exports = {
             // 인증코드 db저장_ 다래
             let code_info = [{'name': 'security_code', 'value': auth_code}];
             savecode.insertdb('SecurityCode_TB', code_info);
-
+   // 인증코드와 메세지생성_ 다래
+           
         } else {
             Subject = 'Please confirm the email linked to your Nexon Trade ID'
             Massage = await authutill.createAuthMessage(User_name, User_email)

@@ -1,18 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const api = require('../method/api.js')
 
 
 // user_idx를 받아 user가 가진 게임 종류 반환 _다래 (미완성)
 router.get('/', async (req,res)=>{
     console.log('/sever/gamelist 요청받음');
-    console.log('/server/gamelist 요청받음');
 
     let user = req.body.user // user 정보 ********** 확인필요
     let user_idx = 2 
     let user = req.body.user; // user 정보 ********** 확인필요
     let user_idx = 2;
-
+    
     let user_info = await api.getrow_games(user_idx);
     let games = [];
 
@@ -26,7 +24,8 @@ router.get('/', async (req,res)=>{
     let gamelist = {};
     gamelist['games'] = games;
 
-    return JSON.stringify(gamelist)
+    // return JSON.stringify(gamelist)
+    res.json(gamelist);
 });
 
 

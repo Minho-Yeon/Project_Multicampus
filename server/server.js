@@ -24,7 +24,9 @@ require('dotenv').config();
 
 global.mydb = pool.promise();
 mongodb();
-
+const {rows,field}=mydb.query(`SELECT * FROM games_tb`);
+global.gamelist = rows;
+console.log(gamelist);
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
 global.ipaddress= 'localhost';
