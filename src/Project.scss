@@ -1,0 +1,25 @@
+#Contents{
+  position: absolute;
+  transition: .5s;
+  width:100%;
+  top:60px;
+  height: 1000px;
+}
+#Mypage {
+  position: absolute;
+
+  height: 1100px;
+
+  width: 0px;
+  z-index: 1;
+  top: 60px;
+  right: 0;
+  background-color: #c3c3c3;
+  overflow-x: hidden;
+  transition: 0.5s;
+  margin:0 auto;
+}
+.ContentsBox{
+  height: 1000px;
+  margin-bottom: 100px;
+}

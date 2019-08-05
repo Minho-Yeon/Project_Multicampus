@@ -1,0 +1,39 @@
+
+.check div{
+    position: relative;
+}
+.check div form {
+    position: absolute;
+    display: inline-block;
+    right: 10px; 
+    line-height: 80px;
+}
+.check div img {
+    width: 80px;
+}
+
+
+.checkbox{
+    position: relative;
+    top : 15px;
+    right: 5px;
+    width: 40px;  
+    height: 40px;
+}
+
+
+.closecheck{
+    display: none;
+}
+.closecheck div{
+    position: relative;
+}
+.closecheck div form {
+    position: absolute;
+    display: inline-block;
+    right: 10px; 
+    line-height: 80px;
+}
+.closecheck div img {
+    width: 80px;
+}

@@ -1,0 +1,35 @@
+
+.relativeBox{
+    position: relative;
+    border: 1px solid blue;
+    background-color: white;
+    margin: 10px auto;
+    width: 50%;
+    min-width: 500px;
+    margin-bottom: 50px;
+}
+
+.openbox{
+    border: 1px solid green;
+    
+    height: 100%;
+   width: 100%;
+}
+
+.openbox img{ 
+    width:40px;
+}
+
+.openbox .checkbox {
+    position: absolute;
+    top:13px;
+    right: 10px;
+}
+
+.closebox{
+    display: none; 
+    border: 1px solid red;
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+}
