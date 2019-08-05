@@ -28,11 +28,10 @@ mongodb();
 
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
-global.ipaddress= '70.12.50.176';
+global.ipaddress= process.env.SERVER_IP;
 global.gamelist;
 const gamedata=async ()=>{
     gamelist = await api.gettable('games_tb')
-    console.log(gamelist);
 };
 gamedata();
 app.use(cors());
