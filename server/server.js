@@ -28,11 +28,10 @@ mongodb();
 
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
-global.ipaddress= '70.12.50.176';
+global.ipaddress= process.env.SERVER_IP;
 global.gamelist;
 const gamedata=async ()=>{
     gamelist = await api.gettable('games_tb')
-    console.log(gamelist);
 };
 gamedata();
 app.use(cors());
@@ -58,6 +57,8 @@ const changepassword = require('./router/changepassword.js');
 app.use('/server/changepassword',changepassword);
 const gameinfo = require('./router/gameinfo.js');
 app.use('/server/gameinfo',gameinfo);
+const exchangerate = require('./router/exchangerate.js');
+app.use('/server/exchangerate',exchangerate);
 // 이메일 인증 후 db에 저장된 user인지 확인
 const auth = require('./router/auth.js')
 app.use('/server/auth',auth)

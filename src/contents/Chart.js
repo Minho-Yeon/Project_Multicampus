@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Collapse,Card,CardBody} from 'reactstrap';
+import {Collapse,Card,CardBody,Button} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Chart.scss';
 
@@ -10,6 +10,11 @@ class Chart extends Component {
       this.toggle = this.toggle.bind(this);
       this.state = { collapse: false };
       
+    }
+    handleChange=(e)=>{
+
+
+      e.preventDefault();
     }
     toggle() {
       this.setState(prevstate=>({ 
@@ -44,6 +49,9 @@ class Chart extends Component {
       },
       ulstyle={
         width :'500px'
+      },
+      gameintro={
+        fontSize:'7px',
       }
     ) {
       return (
@@ -57,8 +65,12 @@ class Chart extends Component {
               <Collapse isOpen={this.state.collapse}>
                 <Card>
                   <CardBody>
-                    <p>게임소개</p>
-                    <button onClick={()=>{this.isOpen()}}>결제하기</button>
+                    <p style={gameintro}>{this.props.gameintro}</p>
+                    <div style={gameintro}>
+                    <label>플랫폼머니 :</label><input type="text" name="flatform" onChange={this.handleChange} />
+                    <label>게임머니 :</label><input type="text" name="game" onChange={this.handleChange} />
+                    </div>
+                    <Button color="primary" onClick={()=>{this.isOpen()}}>결제하기</Button>
                 </CardBody>
                 </Card>
               </Collapse>

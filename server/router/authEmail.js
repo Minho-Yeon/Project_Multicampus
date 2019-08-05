@@ -27,8 +27,14 @@ module.exports = {
             Massage = code.message_code;
             let auth_code = code.auth_code;
 
+            // 재전송시 db에서 기존 auth_code 삭제
+            let resend_check = await api.getrow('SecurityCode_TB', 'nexon_email', User_email)
+            if(resend_check){
+                save.deletedb('SecurityCode_TB', 'nexon_email', User_email);
+            }
+
             // 인증코드 db저장, 5분 뒤 삭제_ 다래
-            let code_info = [{'name': 'security_code', 'value': auth_code}];
+            let code_info = [{'name': 'security_code', 'value': auth_code}, {'name': 'nexon_email' , 'value': User_email}];
             save.insertdb('SecurityCode_TB', code_info);
             setTimeout(function(){
                 save.deletedb('SecurityCode_TB', 'security_code', auth_code);

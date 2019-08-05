@@ -19,9 +19,18 @@ class Main extends Component {
             modal:!prevstate.modal,
         }));
     }
-    componentDidMount=async()=>{
-        let list = await request('get','/server/gamelist',{});
-        
+    componentDidMount= async ()=>{
+        let rawdata1 =  await request('get','/server/gameinfo',{});
+        let rawdata2 =  await request('get','/server/exchangerate',{});
+        localStorage.setItem('gamelist',JSON.stringify(rawdata1.data.gamelist));
+        localStorage.setItem('exchangerate',JSON.stringify(rawdata2.data.exchangerate));
+        let gamelist = JSON.parse(localStorage.getItem('gamelist'));
+        let exchangerate= JSON.parse(localStorage.getItem('exchangerate'));
+        let list=[];
+        for(let num in gamelist){
+            let chan="10P = "+exchangerate[num].exchange_rate+"0";
+            list.push(<div><Chart name={gamelist[num].name_game} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro}isOpen={this.isOpen} alt=""/></div>) ;
+        }
         this.setState({
             gamelist:list
         });
@@ -34,16 +43,7 @@ class Main extends Component {
 
                 </div>
                 <div className="body">
-                    <div><Chart name="메이플스토리" change="100메소 = 1P" img="./jpg/maplestory.jpg" isOpen={this.isOpen} alt=""/></div>
-                    <div><Chart name="메이플스토리2" change="100메소 = 1P" img="./jpg/maplestory2.jpg" isOpen={this.isOpen} alt=""/></div>
-                    <div><Chart name="던전앤파이터" change="100메소 = 1P" img="./jpg/dnf.jpg" isOpen={this.isOpen} alt=""/></div>
-                    <div><Chart name="마비노기" change="100메소 = 1P" img="./jpg/mabi.jpg" isOpen={this.isOpen} alt="" /></div>
-                    <div><Chart name="천애명월도" change="100메소 = 1P" img="./jpg/cheon.jpg" isOpen={this.isOpen} alt=""/></div>
-                    <div><Chart name="테일즈위버" change="100메소 = 1P" img="./jpg/talesweaver.jpg" isOpen={this.isOpen} alt=""/></div>
-                    <div><Chart name="바람의나라" change="100메소 = 1P" img="./jpg/varam.jpg" isOpen={this.isOpen} alt=""/></div>
-                    <div><Chart name="아키에이지" change="100메소 = 1P" img="./jpg/arche.jpg" isOpen={this.isOpen} alt=""/></div>
-                    <div><Chart name="테라" change="100메소 = 1P" img="./jpg/tera.jpg" isOpen={this.isOpen} alt=""/></div>
-                    <div><Chart name="엘소드" change="100메소 = 1P" img="./jpg/elsword.jpg" isOpen={this.isOpen} alt="" /></div>
+                    {this.state.gamelist}
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.isOpen}>
                     <ModalHeader toggle={this.isOpen}>Modal title</ModalHeader>

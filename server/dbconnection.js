@@ -1,11 +1,12 @@
 // const promisePool;
 const mysql = require('mysql2');
+require('dotenv').config();
 
 const pool = mysql.createPool({
-host: '70.12.50.176',
+host: process.env.SERVER_IP,
 port: 3306,
 user: 'root',
-password: '123456',
+password: process.env.mysql_password,
 database: 'MONEYEXCHANGE'
 });
 
