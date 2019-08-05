@@ -3,6 +3,27 @@ import './Exchangelist.scss';
 import './Exchange.js';
 
 class Exchangelist extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            output:0,
+        }
+    }
+ datain=()=>{
+       
+        var val = document.getElementsByClassName('datain')[0] ;
+        console.log("value=", val.value);
+        var out =  document.getElementsByClassName('out');
+       
+        out.value = Number(val.value)/10;
+           console.log("value=", out);
+   
+           this.setState({
+               output:out.value,
+           });
+   
+       }
     render() {
      var props = this.props.number
      function click(){
@@ -16,11 +37,7 @@ class Exchangelist extends Component {
             document.getElementsByClassName('openbox')[props].style.width = "100%";
         }
     }
-    function datain(){
-        document.getElementsByClassName('datain')[0]
-        console.log(document.getElementsByClassName('datain')[0]);
-        
-    }
+    
 
         return (
             <div>
@@ -32,8 +49,9 @@ class Exchangelist extends Component {
                         <input type="checkbox" className="checkbox" onClick={click}/>
                     </div>
                     <div className='closebox'>
-                        <input  className="datain" onKeyUp={datain}/>
-                        <p className="out"></p>
+                        <input  className="datain" onKeyUp={this.datain} />
+                        <p className="out">{this.state.output}</p>
+                        
                         <input type="checkbox" />
                         <input type="number" />
                     </div>
