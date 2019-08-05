@@ -29,8 +29,7 @@ global.gamelist = rows;
 console.log(gamelist);
 global.api=require('./method/api.js');
 global.save=require('./method/save.js');
-global.ipaddress= '70.12.50.176';
-
+global.ipaddress= 'localhost';
 
 app.use(cors());
 app.use(express.json());
