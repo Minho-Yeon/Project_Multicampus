@@ -1,6 +1,5 @@
 const nodemailer = require('nodemailer');
 const authutill = require('../utill/authUtill.js');
-const savecode = require('../method/save.js')
 require('dotenv').config();
 
 module.exports = {
@@ -28,9 +27,13 @@ module.exports = {
             Massage = code.message_code;
             let auth_code = code.auth_code;
 
-            // 인증코드 db저장_ 다래
+            // 인증코드 db저장, 5분 뒤 삭제_ 다래
             let code_info = [{'name': 'security_code', 'value': auth_code}];
-            savecode.insertdb('SecurityCode_TB', code_info);
+            save.insertdb('SecurityCode_TB', code_info);
+            setTimeout(function(){
+                save.deletedb('SecurityCode_TB', 'security_code', auth_code);
+            },300000);
+            
    // 인증코드와 메세지생성_ 다래
            
         } else {
