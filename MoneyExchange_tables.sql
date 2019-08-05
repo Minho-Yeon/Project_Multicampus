@@ -4,7 +4,8 @@ USE MONEYEXCHANGE;
 
 CREATE TABLE SecurityCode_TB (
 	idx_code INT primary key auto_increment,
-    security_code INT
+    security_code INT,
+    nexon_email VARCHAR(100) not null
 );
 
 CREATE TABLE Users_TB (
