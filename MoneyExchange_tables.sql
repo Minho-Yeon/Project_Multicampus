@@ -32,6 +32,7 @@ CREATE TABLE NexonInfo_TB (
 CREATE TABLE Games_TB (
 	idx_game INT primary key auto_increment,
     name_game VARCHAR(100) not null,
+    game_intro VARCHAR(500),
     image_path VARCHAR(40)
 );
 
