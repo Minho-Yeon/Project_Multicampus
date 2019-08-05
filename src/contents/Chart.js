@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Collapse,Card,CardBody} from 'reactstrap';
+import {Collapse,Card,CardBody,Button} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Chart.scss';
 
@@ -44,6 +44,9 @@ class Chart extends Component {
       },
       ulstyle={
         width :'500px'
+      },
+      gameintro={
+        fontSize:'7px',
       }
     ) {
       return (
@@ -57,8 +60,8 @@ class Chart extends Component {
               <Collapse isOpen={this.state.collapse}>
                 <Card>
                   <CardBody>
-                    <p>게임소개</p>
-                    <button onClick={()=>{this.isOpen()}}>결제하기</button>
+                    <p style={gameintro}>{this.props.game_intro}</p>
+                    <Button color="primary" onClick={()=>{this.isOpen()}}>결제하기</Button>
                 </CardBody>
                 </Card>
               </Collapse>
