@@ -28,7 +28,8 @@ router.post('/',async (req,res)=>{
                     userInfo['name_user'] = user.name_user;
                     userInfo['money_platform'] = user.money_platform;
                     userInfo['salt'] = user.salt;
-                    return JSON.stringify(userInfo);
+  
+                    res.json(userInfo)
                 } else {
                     res.json({'message':'비밀번호가 잘못되었습니다.'});
                 }
