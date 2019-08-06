@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Exchangelist from './Exchangelist.js';
 import './Exchange.scss';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 
 class Exchange extends Component {

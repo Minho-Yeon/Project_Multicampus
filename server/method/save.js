@@ -6,7 +6,7 @@ const save = {
        let query = 'INSERT INTO Users_TB (name_user, email_user,password_user,salt) VALUES (?,?,?,?)';
        let [result, field]=await mydb.query(query, [userinfo.username, userinfo.email, userinfo.password, userinfo.salt]);
        console.log(result);
-       let query2 = 'SELECT idx_user FROM Users_TB WHERE email_user=?';
+        let query2 = 'SELECT idx_user FROM Users_TB WHERE email_user=?';
        let [result2, field2]=await mydb.query(query2, [userinfo.email]);
        console.log(result2);
 
@@ -14,7 +14,8 @@ const save = {
        let [result3,field3]=await mydb.query(query3, [userinfo.nexonemail ,result2[0].idx_user]);
        console.log(result3);
    },
-    insertdb:async(table,array)=>{
+
+    insertdb: async(table,array)=>{
        console.log('save.insertdb메소드 실행');
        console.log('table: '+table);
        console.log('array: '+array);
