@@ -26,7 +26,7 @@ class Chart extends Component {
       }));
     }
     else { //로그인 안되었을 경우 Project.js에서 모달 isOpen:true로 바뀜
-
+      this.props.isToggle();
     }
   }
   isOpen = () => {

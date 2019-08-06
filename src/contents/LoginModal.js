@@ -49,9 +49,10 @@ class LoginModal extends Component {
         return (//다래
 
             <div className='loginmodal'>
-                <Modal isOpen={this.props.isOpen} toggle={this.toggle}>
+                <Modal isOpen={this.props.isOpen} toggle={this.props.isToggle}>
+                <ModalHeader toggle={this.props.isToggle}>로그인</ModalHeader>
                     <ModalBody>
-                        <AuthContent title="로그인">
+                        <AuthContent >
                             <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={this.handleChange} />
                             <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={this.handleChange} />
                             <AuthButton onClick={this.tryLogin}>로그인</AuthButton>
