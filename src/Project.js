@@ -52,18 +52,6 @@ class Project extends Component {
         this.getCharacter();
         this.getdata();
     }
-
-    // openModal = () => {
-    //     this.setState(prevstate =>({ 
-    //         isModalOpen: true, 
-    //     }));
-    // }
-
-    // closeModal = () => {
-    //     this.setState(prevstate =>({ 
-    //         isModalOpen: false 
-    //     }));
-    // }
     render() {
         return (
             <BrowserRouter>
