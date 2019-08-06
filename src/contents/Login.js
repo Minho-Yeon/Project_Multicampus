@@ -16,6 +16,9 @@ class Login extends Component{
         this.logininfo[name]= value;
         e.preventDefault();
     }
+    getCharacter=async()=>{
+        await this.props.getCharacter();
+    }
     tryLogin = async ()=>{    //로그인시도 메소드 -민호
         console.log(this.logininfo);
         let regExp = /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
@@ -28,7 +31,9 @@ class Login extends Component{
         let issuccess=await request('post','/server/login',this.logininfo); //서버에 로그인 요청- 민호
         if(issuccess.data.userInfo!==undefined){
             localStorage.setItem('logininfo',JSON.stringify(issuccess.data.userInfo));//로컬 스토리지에 로그인 정보 저장-민호
+            await this.getCharacter();
             this.props.history.push('/');   //메인페이지로 이동-민호
+            // window.location.href='/';
         }else{
             alert(issuccess.data.message);  //로그인 실패시 메세지-민호
         }

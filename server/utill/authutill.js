@@ -39,7 +39,8 @@ module.exports = {
         let encrypt = await security.Cipher(userEmail, salt);
         let encrypt_check = encrypt.split('/').join('-');
         let salt_check = salt.split('/').join('-');
-        console.log(encrypt_check)
+        console.log(encrypt_check);
+        console.log(salt_check);
 
         let url = `http://${ipaddress}:5000/server/auth/${encrypt_check}/${salt_check}`
         //user이메일에 보내는 메세지 
