@@ -47,10 +47,15 @@ const save = {
    updatequery:async(table,array,requirement,value)=>{
        let set="";
        array.forEach(element => {
+           if(element.name!=="update_at"){
            set+=`${element.name}="${element.value}",`;
+           }else{
+            set+=`${element.name}=${element.value},`;
+           }
        });
        set=set.substring(0, set.length-1);
        let query=`UPDATE ${table} SET  ${set} WHERE ${requirement}="${value}"`;
+       console.log(query);
        return query;
    },
     deletedb:async(table,requirement,value)=>{

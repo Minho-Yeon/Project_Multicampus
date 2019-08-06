@@ -9,7 +9,7 @@ import Mypage from './Mypage';
 import Footer from './Footer';
 import Auth from './contents/Auth';
 import Confirm from './contents/Confirm';
-import LoginModal from './contents/LoginModal';
+
 import { BrowserRouter, Route } from 'react-router-dom';
 import request from './contents/Request';
 import ErrorBoundary from './contents/ErrorBoundary'
@@ -21,7 +21,7 @@ class Project extends Component {
             isOpen: false,
 
             characterinfo:"",
-            isModalOpen: false,
+            
         }
     }
     isToggle = () => {
@@ -53,17 +53,17 @@ class Project extends Component {
         this.getdata();
     }
 
-    openModal = () => {
-        this.setState(prevstate =>({ 
-            isModalOpen: true, 
-        }));
-    }
+    // openModal = () => {
+    //     this.setState(prevstate =>({ 
+    //         isModalOpen: true, 
+    //     }));
+    // }
 
-    closeModal = () => {
-        this.setState(prevstate =>({ 
-            isModalOpen: false 
-        }));
-    }
+    // closeModal = () => {
+    //     this.setState(prevstate =>({ 
+    //         isModalOpen: false 
+    //     }));
+    // }
     render() {
         return (
             <BrowserRouter>
@@ -95,8 +95,6 @@ class Project extends Component {
                 </div>
                 <div>
                     <Footer />{/* footer 부분*/}
-                    <button onClick={this.openModal}>Modal Open</button>
-                    <LoginModal isOpen={this.state.isModalOpen} close={this.closeModal}/>
                 </div>
 
             </BrowserRouter>

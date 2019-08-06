@@ -29,7 +29,6 @@ class Submy extends Component {
                         </div>
                     );
                     this.totalmoney+=parseInt(this.props.characterinfo[num].money_character);
-                    console.log(this.totalmoney);
                 }
             }
             else {
