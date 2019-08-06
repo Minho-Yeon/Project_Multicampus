@@ -15,7 +15,7 @@ class ErrorNotFound extends Component {
             </div>
             <div className="stack-container">
                 <div className="card-container">
-                    <div className="perspec" style="--spreaddist: 125px; --scaledist: .75; --vertdist: -25px;">
+                    <div className="perspec" >
                         <div className="card">
                             <div className="writing">
                                 <div className="topbar">
@@ -32,7 +32,7 @@ class ErrorNotFound extends Component {
                     </div>
                 </div>
                 <div className="card-container">
-                    <div className="perspec" style="--spreaddist: 100px; --scaledist: .8; --vertdist: -20px;">
+                    <div className="perspec">
                         <div className="card">
                             <div className="writing">
                                 <div className="topbar">
@@ -49,7 +49,7 @@ class ErrorNotFound extends Component {
                     </div>
                 </div>
                 <div className="card-container">
-                    <div className="perspec" style="--spreaddist:75px; --scaledist: .85; --vertdist: -15px;">
+                    <div className="perspec" >
                         <div className="card">
                             <div className="writing">
                                 <div className="topbar">
@@ -66,7 +66,7 @@ class ErrorNotFound extends Component {
                     </div>
                 </div>
                 <div className="card-container">
-                    <div className="perspec" style="--spreaddist: 50px; --scaledist: .9; --vertdist: -10px;">
+                    <div className="perspec" >
                         <div className="card">
                             <div className="writing">
                                 <div className="topbar">
@@ -83,7 +83,7 @@ class ErrorNotFound extends Component {
                     </div>
                 </div>
                 <div className="card-container">
-                    <div className="perspec" style="--spreaddist: 25px; --scaledist: .95; --vertdist: -5px;">
+                    <div className="perspec" >
                         <div className="card">
                             <div className="writing">
                                 <div className="topbar">
@@ -100,7 +100,7 @@ class ErrorNotFound extends Component {
                     </div>
                 </div>
                 <div className="card-container">
-                    <div className="perspec" style="--spreaddist: 0px; --scaledist: 1; --vertdist: 0px;">
+                    <div className="perspec" >
                         <div className="card">
                             <div className="writing">
                                 <div className="topbar">
