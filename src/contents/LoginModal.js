@@ -34,7 +34,6 @@ class LoginModal extends Component {
         if (issuccess.data.userInfo !== undefined) {
             localStorage.setItem('logininfo', JSON.stringify(issuccess.data.userInfo));//로컬 스토리지에 로그인 정보 저장-민호
             this.props.history.push('/');   //메인페이지로 이동-민호
-            this.props.close(); // modal 닫기
         } else {
             alert(issuccess.data.message);  //로그인 실패시 메세지-민호
         }
@@ -42,7 +41,6 @@ class LoginModal extends Component {
 
     trySignin = async () => {
         this.props.history.push('/signin');  // 회원가입 페이지로 이동_ 다래
-        this.props.close(); // modal 닫기
     }
 
     render() {
