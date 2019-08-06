@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Exchangelist.scss';
 import './Exchange.js';
+import Character from './Character.js';
+import './Character.js';
 
 class Exchangelist extends Component {
 
@@ -8,28 +10,15 @@ class Exchangelist extends Component {
         super(props);
         this.state = {
             output: 0,
+            add: "",
+            addvalue: 0,
         }
     }
 
 
-    datain = () => {
-
-        var val = document.getElementsByClassName('datain')[0];
-        console.log("value=", val.value);
-        var out = document.getElementsByClassName('out');
-        var change = document.getElementsByClassName('aaabbb')[0];
-        console.log(change);
-
-        out.value = Number(val.value) * change.value;
-        console.log("value=", out);
-
-        this.setState({
-            output: out.value,
-        });
-    }
 
     click = () => {
-        var props = this.props.number
+        var props = this.props.number     
         if (document.getElementsByClassName('checkbox')[props].checked) {
             document.getElementsByClassName('closebox')[props].style.display = "block";
             document.getElementsByClassName('closebox')[props].style.height = "100%";
@@ -40,15 +29,24 @@ class Exchangelist extends Component {
             document.getElementsByClassName('openbox')[props].style.width = "100%";
         }
 
-        // addBtn = () =>{
-        //     console.log("closebox =",document.getElementsByClassName('closebox'));
-
-        // }
-
     }
+    addBtn = () => {
+            
+            console.log("나와라잇", document.getElementsByClassName("Character"))
+
+            var money = document.getElementsByClassName('output')[0].value;
+            var gname = document.getElementsByClassName('name')[0].innerText;
+            console.log("output =", document.getElementsByClassName('output')[0].value);
+            console.log("name = ", document.getElementsByClassName('name')[0].innerText);
+    
+            this.setState({
+                add: gname + money,
+            })
+        }
+
+
+
     render() {
-
-
         return (
             <div>
 
@@ -57,7 +55,7 @@ class Exchangelist extends Component {
                     <div className='openbox' >
                         <img src="./jpg/maplestory.jpg" alt="" />
                         {/* 게임 이름과 환율이 들어갈 자리 */}
-                        <h2>메이플 스토리</h2>
+                        <h2 className="name" >메이플 스토리</h2>
                         <h2>환율: 1P = </h2>
                         {/*  */}
 
@@ -66,19 +64,12 @@ class Exchangelist extends Component {
                         <hr />
                     </div>
                     <div className='closebox'>
-                        <select >
-                            <option value="charic1"> 캐릭터1</option>
-                            <option value="charic2"> 캐릭터2</option>
-                            <option value="charac3"> 캐릭터3</option>
-                        </select>
-                        <input className="datain" onKeyUp={this.datain} />
-                        <img src="./jpg/rightarrow.png" className="right" alt="" />
-                        <input className="output" type="text" value={this.state.output} />
-                        <button className="addBtn" onClick={this.addBtn}>추가하기</button>
+                        <Character className="Character" function={this.addBtn} number="0"/>
+                        <Character className="Character" function={this.addBtn} number="1" />
+                        <Character className="Character" function={this.addBtn} number="2" />
                     </div>
                 </div>
-
-
+               
             </div>
         );
     }
