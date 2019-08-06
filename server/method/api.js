@@ -23,7 +23,6 @@ const api= {
     getrow: async (table, requirements, value) => {
         let select_stmt=`SELECT * FROM ${table} WHERE ${requirements}= "${value}"`;
         const [rows, fields] = await mydb.query(select_stmt);        
-        console.log(rows[0]);
         return rows[0];
     },
 
@@ -46,7 +45,6 @@ const api= {
 
     getNexonUser: async (nexon_email) => {
         var result = await mongodbSchema.find({nexonEmail: nexon_email})
-        console.log('mongodb_userInfo: ',result)
         return result[0];
     }    
 

@@ -15,7 +15,6 @@ class Mypage extends Component {
                 let character = characterinfo.filter((character) => {
                     return character.idx_game === parseInt(num) + 1;
                 });
-                console.log(gamelist[num].name_game);
                 list.push(<div key={num}><Submy name={gamelist[num].name_game} characterinfo={character} img={gamelist[num].image_path} alt="" /></div>);
             }
             return list;
