@@ -12,6 +12,8 @@ import Confirm from './contents/Confirm';
 import LoginModal from './contents/LoginModal';
 import { BrowserRouter, Route } from 'react-router-dom';
 import request from './contents/Request';
+import ErrorBoundary from './contents/ErrorBoundary'
+
 class Project extends Component {
     constructor(props) {
         super(props);
@@ -71,11 +73,21 @@ class Project extends Component {
                 <div className="ContentsBox">
                     <div id="Contents" style={{ width: this.state.isOpen ? '70%' : '100%'}}>{/*내용 부분 */}
                         <Route exact to path="/" component={() => <Main  characterinfo={this.state.characterinfo}/>}/>
-                        <Route path="/exchange" component={() => <Exchange  getCharacter={this.getCharacter} characterinfo={this.state.characterinfo}/>}/>
-                        <Route path="/login" component={() => <Login getCharacter={this.getCharacter}/>}/>
-                        <Route path="/signin" component={Signin} />
-                        <Route path="/auth" component={Auth} />
-                        <Route path="/confirm" component={Confirm} />
+                        <ErrorBoundary>
+                            <Route path="/exchange" component={() => <Exchange  getCharacter={this.getCharacter} characterinfo={this.state.characterinfo}/>}/>
+                        </ErrorBoundary>
+                        <ErrorBoundary>
+                            <Route path="/login" component={() => <Login getCharacter={this.getCharacter}/>}/>
+                        </ErrorBoundary>
+                        <ErrorBoundary>
+                            <Route path="/signin" component={Signin} />
+                        </ErrorBoundary>
+                        <ErrorBoundary>
+                            <Route path="/auth" component={Auth} />
+                        </ErrorBoundary>
+                        <ErrorBoundary>
+                            <Route path="/confirm" component={Confirm} />
+                        </ErrorBoundary>
                     </div>
                     <div id="Mypage" style={{ width: this.state.isOpen ? '30%' : '0%'}}  >{/*마이페이지 부분 */}
                         <Mypage characterinfo={this.state.characterinfo}/>
