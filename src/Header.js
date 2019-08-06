@@ -35,7 +35,7 @@ class Header extends Component {
     logOut = () => {  //로그아웃 메소드 - 민호
         console.log('로그아웃 시도');
         localStorage.removeItem('logininfo');
-        this.props.history.push('/');
+        window.location.href='/';
     }
     menuSet = () => {       //로그인 여부에 따라 메뉴 출력 메소드-민호
         if (this.isLogin()) {

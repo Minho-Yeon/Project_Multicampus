@@ -23,7 +23,7 @@ const api= {
     getrow: async (table, requirements, value) => {
         let select_stmt=`SELECT * FROM ${table} WHERE ${requirements}= "${value}"`;
         const [rows, fields] = await mydb.query(select_stmt);        
-   
+        console.log(rows[0]);
         return rows[0];
     },
 
