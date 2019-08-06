@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Chart from './Chart';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom'
 import './Main.scss';
@@ -62,10 +62,10 @@ class Main extends Component {
                     {this.state.gamelist}
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.isOpen}>
-                    <ModalHeader toggle={this.isOpen}>Modal title</ModalHeader>
+                    <ModalHeader toggle={this.isOpen}>바로 결제하시겠습니까?</ModalHeader>
                     <ModalBody>
-                        모달입니다
-                       <Link to="/exchange">결제페이지</Link>
+                        <Button color="success">이것만 결제할래요.</Button>
+                       <Button color="link"><Link to="/exchange">다른 게임도 볼래요.</Link></Button>
                     </ModalBody>
                 </Modal>
                 
