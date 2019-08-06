@@ -4,16 +4,12 @@ const request =(type, url, data) => {  //axios를 간편하게 사용할 수 있
         console.log('url', url);
        axios[type](url, data)
             .then(c => {
-                // console.log(c);
-                resolve(c);
-                // return c;
-                
+                resolve(c);   
             })
             .catch(err => {
                 console.log(err);
                 return err;
             })
-            
     })
 }
 

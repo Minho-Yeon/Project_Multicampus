@@ -12,12 +12,20 @@ class Main extends Component {
             modal: false,
             gamelist: "",
             isModalOpen: false,
+            modalmessage:''
         }
     }
-    isOpen = () => {
+    handlechange=(evt)=>{
+        this.exchangeinfo={};
+        const {name,value}=evt.target;
+        this.exchangeinfo[name]=value;
+        evt.preventDefault();
+    }
+    isOpen = (message) => {
         console.log('눌림');
         this.setState(prevstate => ({
             modal: !prevstate.modal,
+            // modalmessage:message,
         }));
     }
     isToggle = () => {
@@ -25,7 +33,6 @@ class Main extends Component {
                isModalOpen:!prevstate.isModalOpen,
             }));
         }
-
     componentDidMount = () => {
         let gamelist = JSON.parse(localStorage.getItem('gamelist'));
         let exchangerate = JSON.parse(localStorage.getItem('exchangerate'));
@@ -38,7 +45,7 @@ class Main extends Component {
                     return character.idx_game ===parseInt(num)+1;
                 });
                 let chan = "10P = " + exchangerate[num].exchange_rate + "0";
-                list.push(<div key={num}><Chart name={gamelist[num].name_game} characterinfo={character} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" /></div>);
+                list.push(<div key={num}><Chart name={gamelist[num].name_game} number={parseInt(num)+1} characterinfo={character} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" handlechange={this.handlechange}/></div>);
             }
         }
         else {
@@ -64,6 +71,7 @@ class Main extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.isOpen}>
                     <ModalHeader toggle={this.isOpen}>바로 결제하시겠습니까?</ModalHeader>
                     <ModalBody>
+                        {this.state.modalmessage}
                         <Button color="success">이것만 결제할래요.</Button>
                        <Button color="link"><Link to="/exchange">다른 게임도 볼래요.</Link></Button>
                     </ModalBody>

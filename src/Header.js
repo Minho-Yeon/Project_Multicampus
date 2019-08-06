@@ -130,7 +130,6 @@ class Header extends Component {
         }
         var modal = {
             backgroundColor: '#f2f2f2'
-
         }
         var infoinput = {
             width: '100%',
@@ -160,9 +159,9 @@ class Header extends Component {
                                 <div className="info">
                                     <p>이름: 황상욱</p>
                                     <p>포인트 :100p </p>
-                                    <p style={pstyle}>현재 비밀번호 : <input style={infoinput} type="password" name='current_password' onChange={this.handleChange} ref={(ref) => { this.hide = ref; }}></input></p>
-                                    <p style={pstyle}>새 비밀번호 : <input style={infoinput} type="password" name='new_password' onChange={this.handleChange} ref={(ref) => { this.hide = ref; }}></input></p>
-                                    <p style={pstyle}>새 비밀번호 확인 : <input style={infoinput} type="password" name='confirm_password' onChange={this.handleChange} ref={(ref) => { this.hide = ref; }}></input></p>
+                                    <p style={pstyle}>현재 비밀번호 : <input style={infoinput} type="password" name='current_password' onChange={this.handleChange} ></input></p>
+                                    <p style={pstyle}>새 비밀번호 : <input style={infoinput} type="password" name='new_password' onChange={this.handleChange}></input></p>
+                                    <p style={pstyle}>새 비밀번호 확인 : <input style={infoinput} type="password" name='confirm_password' onChange={this.handleChange} ></input></p>
                                     <button className="pbutton" onClick={this.changePassword}>비밀번호변경</button>
                                 </div>
                             </div>

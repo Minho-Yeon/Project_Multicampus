@@ -11,14 +11,21 @@ class Chart extends Component {
       collapse: false,
 
     };
-
+    this.exchangeinfo={
+    };
 
   }
-  handleChange = (e) => {
+  handleChange=(evt)=>{
+    
+    console.log(evt.target);
+    // console.log(this.exchangeinfo);
+    const {name,value}=evt.target;
+    // console.log(this.exchangeinfo[number]);
+    this.exchangeinfo[name]=value;
 
-
-    e.preventDefault();
-  }
+    console.log(this.exchangeinfo);
+    evt.preventDefault();
+}
   toggle=()=> {
     if (localStorage.getItem('logininfo')) {
       this.setState(prevstate => ({
@@ -30,7 +37,9 @@ class Chart extends Component {
     }
   }
   isOpen = () => {
-    this.props.isOpen();
+
+    let message="";
+    this.props.isOpen(message);
 
   }
   render(
@@ -69,8 +78,8 @@ class Chart extends Component {
         this.characterlist.push(
           <div key={num} style={gameintro}>
             {"닉네임 : "+this.props.characterinfo[num].name_character+"->"} 
-            <label>플랫폼머니 :</label><input type="text" name="flatform" onChange={this.handleChange} />
-            <label>게임머니 :</label><input type="text" name="game" onChange={this.handleChange} />
+            <label>플랫폼머니 :</label><input type="text"  name={num+"platform"} onChange={this.handleChange} />
+            <label>게임머니 :</label><input type="text"  name={num+"game"} onChange={this.handleChange} />
           </div>
         );
       }
