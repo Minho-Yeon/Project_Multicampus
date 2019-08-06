@@ -49,7 +49,6 @@ class Main extends Component {
 
             <div className="aaa">
                 <div className="search">
-
                 </div>
                 <div className="body">
                     {this.state.gamelist}
