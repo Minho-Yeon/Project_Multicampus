@@ -32,8 +32,10 @@ class LoginModal extends Component {
 
         let issuccess = await request('post', '/server/login', this.logininfo); //서버에 로그인 요청- 민호
         if (issuccess.data.userInfo !== undefined) {
+            console.log('로그인성공');
             localStorage.setItem('logininfo', JSON.stringify(issuccess.data.userInfo));//로컬 스토리지에 로그인 정보 저장-민호
             this.props.history.push('/');   //메인페이지로 이동-민호
+            this.props.isToggle();
         } else {
             alert(issuccess.data.message);  //로그인 실패시 메세지-민호
         }
