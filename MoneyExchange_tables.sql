@@ -62,7 +62,6 @@ CREATE TABLE Exchange_TB (
     idx_exchang_rate INT,
     fee INT,
     moneydir varchar(30),
-    exchange_money INT,
     exchange_time DATETIME default current_timestamp,
     game_money INT,
     platform_money INT,
