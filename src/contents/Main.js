@@ -25,7 +25,7 @@ class Main extends Component {
         console.log('눌림');
         this.setState(prevstate => ({
             modal: !prevstate.modal,
-            // modalmessage:message,
+            modalmessage:message,
         }));
     }
     isToggle = () => {

@@ -30,8 +30,8 @@ const Wrapper = styled.div`
 
 `;
 
-const AuthButton = ({children, onClick}) => (
-    <Wrapper onClick={onClick}>
+const AuthButton = ({children, display,...rest}) => (
+    <Wrapper style={{display:display}} {...rest}>
         {children}
     </Wrapper>
 );

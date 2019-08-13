@@ -6,12 +6,15 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import AuthButton from './contents/auth/AuthButton.js';
 import { withRouter } from 'react-router-dom';
 import request from './contents/Request.js';
+import axios from 'axios';
 const hasher = require('pbkdf2-password')();
 class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
             modal: false,
+            file: undefined,
+            image_change: false,
         }
         this.passwordinfo = {};
     }
@@ -39,6 +42,10 @@ class Header extends Component {
     }
     menuSet = () => {       //로그인 여부에 따라 메뉴 출력 메소드-민호
         if (this.isLogin()) {
+            let logininfo = JSON.parse(localStorage.getItem('logininfo'));
+            this.name_user = logininfo.name_user;
+            this.money_platform = logininfo.money_platform;
+            this.image_path = logininfo.image_path;
             return (
                 <>
                     <li onClick={() => { this.isToggle() }}>마이페이지</li>
@@ -62,18 +69,13 @@ class Header extends Component {
         evt.preventDefault();
     }
     changePassword = async () => {
-        var regex = /^[A-Za-z0-9]{6,12}$/;
-        console.log(this.passwordinfo.new_password);
-        if (!regex.test(this.passwordinfo.new_password)) {     //비밀번호 숫자,문자 포함 6~12자리-민호
-            console.log('새로운 비밀번호를 다시 설정하셔야 합니다.');
-            alert('새로운 비밀번호를 다시 설정하셔야 합니다.');
-            return;
-        };
+
         let logininfo = JSON.parse(localStorage.getItem('logininfo'));
         console.log(logininfo);
-        let current_salt= logininfo.salt;
+        let current_salt = logininfo.salt;
+        let passwordinfo= this.passwordinfo;
         await hasher({
-            password: this.passwordinfo.current_password,
+            password: passwordinfo.current_password,
             salt: current_salt,
         }, async (err, pass, salt, hash) => {
             if (err) throw err;
@@ -86,32 +88,73 @@ class Header extends Component {
                     alert('현재 비밀번호가 틀렸습니다.');
                     return;
                 }
-                if (!this.passwordinfo.new_password === this.passwordinfo.confirm_password) {
+                // var regex = /^[A-Za-z0-9]{6,12}$/;
+                var regex = /^(?=.*[A-Za-z])(?=.*[0-9]).{6,12}$/;
+                console.log(passwordinfo.new_password);
+                if (!regex.test(passwordinfo.new_password)) {     //비밀번호 숫자,문자 포함 6~12자리-민호
+                    console.log('새로운 비밀번호를 다시 설정하셔야 합니다.');
+                    alert('새로운 비밀번호를 다시 설정하셔야 합니다.');
+                    return;
+                };
+                if (passwordinfo.new_password !== passwordinfo.confirm_password) {
                     console.log('새로운 비밀번호가 일치하지 않습니다.');
                     alert('새로운 비밀번호가 일치하지 않습니다.');
                     return;
                 }
                 await hasher({
-                    password: this.passwordinfo.new_password
+                    password: passwordinfo.new_password
                 }, async (err, pass, salt, hash) => {
                     if (err) throw err;
                     else {
-                        this.passwordinfo.salt = salt;
-                        this.passwordinfo.new_password = hash;
-                        this.passwordinfo.current_password=current_hash;
-                        let issuccess = await request('post', '/server/changepassword', this.passwordinfo);
+                        passwordinfo.salt = salt;
+                        passwordinfo.new_password = hash;
+                        passwordinfo.current_password = current_hash;
+                        let issuccess = await request('post', '/server/changepassword', passwordinfo);
                         if (issuccess.data.success) {
                             alert('비밀번호 변경이 완료 되었습니다.');
-                            logininfo.salt=this.passwordinfo.salt;
-                            localStorage.setItem('logininfo',JSON.stringify(logininfo));
+                            logininfo.salt = passwordinfo.salt;
+                            localStorage.setItem('logininfo', JSON.stringify(logininfo));
                         }
                         else {
                             alert('비밀번호가 변경되지 않았습니다.');
                         }
                     }
-                })
+                });
             }
         });
+    }
+    fileSelectedHandler = (e) => {
+        this.setState({
+            file: e.target.files[0],
+        })
+    }
+    uploadFile = () => {
+        console.log('uploadFile실행');
+        console.log(this.state.file);
+        let formData = new FormData();
+        formData.append('image', this.state.file);
+        formData.append('username', this.name_user);
+        formData.append('origin_image', this.image_path);
+
+        for (let key of formData.entries()) {
+            console.log(`${key}`);
+        }
+
+        axios({
+            url: '/server/uploadimage',
+            method: 'POST',
+            headers: { 'Content-Type': 'multipart/form-data' },
+            data: formData,
+        }).then((c) => {
+            console.log(c);
+            let logininfo = JSON.parse(localStorage.getItem('logininfo'));
+            logininfo.image_path = c.data.image_path;
+            localStorage.setItem('logininfo', JSON.stringify(logininfo));
+            this.setState(prevstate => ({
+                image_change: !prevstate.image_path,
+            }));
+        });
+
     }
     render() {
         let menu = this.menuSet();  //로그인에 따라 메뉴 출력 - 민호
@@ -139,10 +182,10 @@ class Header extends Component {
             fontSize: '12px',
             margin: '5px'
         }
-
-        // var pbutton = {
-        //     textAlign: 'center'
-        // }
+        var image = {
+            width: '225px',
+            height: '225px'
+        }
         return (
             <div className="header">
                 <Link to="/"><p style={Header}><img className="mainicon" src="./jpg/nexonicon.jpg" alt="" />Nexon Trade</p></Link>
@@ -153,12 +196,14 @@ class Header extends Component {
                         <ModalBody style={modal}>
                             <div>
                                 <div className="uploadimg">
-                                    <img className="userinfoimg" src="./jpg/maplestory.jpg" alt="" />
-                                    <AuthButton >이미지변경</AuthButton>
+                                    <div style={image}><img style={image} className="userinfoimg" src={this.image_path} alt="" /></div>
+                                    <input type="file" style={{ display: "none" }} onChange={(e) => { this.fileSelectedHandler(e) }} ref={fileInput => { this.fileInput = fileInput }} />
+                                    <AuthButton onClick={() => { this.fileInput.click() }}>변경이미지선택</AuthButton>
+                                    <AuthButton onClick={this.uploadFile} >이미지변경</AuthButton>
                                 </div>
                                 <div className="info">
-                                    <p>이름: 황상욱</p>
-                                    <p>포인트 :100p </p>
+                                    <p>이름: {this.name_user}</p>
+                                    <p>포인트 : {this.money_platform} </p>
                                     <p style={pstyle}>현재 비밀번호 : <input style={infoinput} type="password" name='current_password' onChange={this.handleChange} ></input></p>
                                     <p style={pstyle}>새 비밀번호 : <input style={infoinput} type="password" name='new_password' onChange={this.handleChange}></input></p>
                                     <p style={pstyle}>새 비밀번호 확인 : <input style={infoinput} type="password" name='confirm_password' onChange={this.handleChange} ></input></p>

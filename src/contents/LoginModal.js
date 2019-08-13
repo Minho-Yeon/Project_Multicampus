@@ -21,6 +21,13 @@ class LoginModal extends Component {
         e.preventDefault();
     }
 
+    handlekeypress=(e)=>{       //엔터키 입력시 로그인 버튼 클릭 메소드 - 민호
+        console.log(e.charCode);
+        if(e.charCode===13){
+            this.tryLogin();
+        }
+    }
+
     tryLogin = async () => {    //로그인시도 메소드 -민호
         console.log(this.logininfo);
         let regExp = /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
@@ -53,8 +60,8 @@ class LoginModal extends Component {
                 <ModalHeader toggle={this.props.isToggle}>로그인</ModalHeader>
                     <ModalBody>
                         <AuthContent >
-                            <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={this.handleChange} />
-                            <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={this.handleChange} />
+                            <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={this.handleChange} onKeyPress={this.handlekeypress} autoFocus={true}/>
+                            <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={this.handleChange} onKeyPress={this.handlekeypress}/>
                             <AuthButton onClick={this.tryLogin}>로그인</AuthButton>
                         </AuthContent>
                     </ModalBody>

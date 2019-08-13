@@ -9,8 +9,8 @@ const request =(type, url, data) => {  //axios를 간편하게 사용할 수 있
             .catch(err => {
                 console.log(err);
                 return err;
-            })
-    })
+            });
+    });
 }
 
 export default request;

@@ -4,6 +4,7 @@ const cors = require('cors');
 const port = 5000;
 const pool = require('./dbconnection.js')
 const mongodb = require('./mongodbConnecion.js');
+global.path = require('path');
 // ENV_ mongoDB 변수지정
 require('dotenv').config();
 
@@ -39,6 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: false
 }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 const login = require('./router/login.js');
@@ -61,6 +63,8 @@ const exchangerate = require('./router/exchangerate.js');
 app.use('/server/exchangerate',exchangerate);
 const checkpassword = require('./router/checkpassword');
 app.use('/server/checkpassword',checkpassword);
+const uploadimage = require('./router/uploadimage.js');
+app.use('/server/uploadimage',uploadimage);
 // 이메일 인증 후 db에 저장된 user인지 확인
 const auth = require('./router/auth.js')
 app.use('/server/auth',auth)
@@ -73,4 +77,3 @@ app.use('/server/test',test);
 app.listen(port, ()=>{
     console.log(port+"번호로 대기 중...");
 });
-
