@@ -127,13 +127,13 @@ class Main extends Component {
                     return character.idx_game === parseInt(num) + 1;
                 });
                 let chan = "10P = " + exchangerate[num].exchange_rate + "0";
-                list.push(<div key={num}><Chart name={gamelist[num].name_game} number={parseInt(num) + 1} characterinfo={character} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" exchange_rate={exchangerate[num].exchange_rate} listControl={this.listControl} ref={(cd) => this.child = cd} /></div>);
+                list.push(<div key={num}><Chart name={gamelist[num].name_game} number={parseInt(num) + 1} characterinfo={character} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" exchange_rate={exchangerate[num].exchange_rate} listControl={this.listControl} /></div>);
             }
         }
         else {
             for (let num in gamelist) {
                 let chan = "10P = " + exchangerate[num].exchange_rate + "0";
-                list.push(<div key={num}><Chart name={gamelist[num].name_game} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" isToggle={this.isToggle} exchange_rate={exchangerate[num].exchange_rate} ref={(cd) => this.child = cd} /></div>);
+                list.push(<div key={num}><Chart name={gamelist[num].name_game} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" isToggle={this.isToggle} exchange_rate={exchangerate[num].exchange_rate} /></div>);
             }
         }
         this.setState({
