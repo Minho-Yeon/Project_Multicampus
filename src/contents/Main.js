@@ -16,13 +16,20 @@ class Main extends Component {
         }
         this.modalmessage = ``;
     }
-    // handlechange = (evt) => {   
-    //     this.exchangeinfo = {};
-    //     const { name, value } = evt.target;
-    //     this.exchangeinfo[name] = value;
-    //     evt.preventDefault();
-    // }
-    simpleexchange = async () => {
+    listControl = (chart) => {   //게임 리스트목록 중 Collapse가 오픈 된 것을 한 개로 유지시키기 위한 메소드- 민호
+        chart.setState(prevstate => ({  //클릭한 게임리스트 collapse on/off - 민호
+            collapse: !prevstate.collapse,
+        }));
+        // 조건에 따라 전에 클릭했던 게임리스트의 collapse를 컨트롤 - 민호
+        if (this.chart !== undefined&&this.chart!==chart&&this.chart.state.collapse===true){
+            this.chart.setState(prevstate => ({ // 전에 클릭했던 게임리스트 collapse on/off - 민호
+                collapse: !prevstate.collapse,
+            }))
+        }
+        this.chart = chart;
+    }
+
+    simpleexchange = async () => {      //거래 데이터를 정제해서 서버에 거래요청 하는 메소드- 민호
         console.log(this.exchangeinfo);
         let logininfo = JSON.parse(localStorage.getItem('logininfo'));
         let email = logininfo.email_user;
@@ -41,16 +48,16 @@ class Main extends Component {
             character.moneydir = this.money_direction;
             character.fee = this.exchangeinfo[num].fee;
             if (character.moneydir === "G2P") {
-                character.change_Gmoney=-1*parseInt(character.change_Gmoney);
+                character.change_Gmoney = -1 * parseInt(character.change_Gmoney);
             } else {
-                character.change_Pmoney=-1*parseInt(character.change_Pmoney);
+                character.change_Pmoney = -1 * parseInt(character.change_Pmoney);
             }
             characterInfo.push(character);
         }
         console.log(characterInfo);
-        await request('post','/server/exchange/saveinfo',{"userinfo":{"email":email},"characterInfo":characterInfo,});
+        await request('post', '/server/exchange/saveinfo', { "userinfo": { "email": email }, "characterInfo": characterInfo, });
     }
-    isOpen = (exchangeinfo, money_direction, game_name) => {
+    isOpen = (exchangeinfo, money_direction, game_name) => {    //거래하기 눌렀을 때 간편결제창 모달 - 민호
         if (!this.state.modal) {
             let logininfo = JSON.parse(localStorage.getItem('logininfo'));
             let total_platform = logininfo.money_platform;
@@ -108,7 +115,7 @@ class Main extends Component {
             isModalOpen: !prevstate.isModalOpen,
         }));
     }
-    componentDidMount = () => {
+    componentDidMount = () => { //게임의 정보와 환전률을 셋팅 - 민호
         let gamelist = JSON.parse(localStorage.getItem('gamelist'));
         let exchangerate = JSON.parse(localStorage.getItem('exchangerate'));
         let list = [];
@@ -120,13 +127,13 @@ class Main extends Component {
                     return character.idx_game === parseInt(num) + 1;
                 });
                 let chan = "10P = " + exchangerate[num].exchange_rate + "0";
-                list.push(<div key={num}><Chart name={gamelist[num].name_game} number={parseInt(num) + 1} characterinfo={character} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" exchange_rate={exchangerate[num].exchange_rate} /></div>);
+                list.push(<div key={num}><Chart name={gamelist[num].name_game} number={parseInt(num) + 1} characterinfo={character} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" exchange_rate={exchangerate[num].exchange_rate} listControl={this.listControl} ref={(cd) => this.child = cd} /></div>);
             }
         }
         else {
             for (let num in gamelist) {
                 let chan = "10P = " + exchangerate[num].exchange_rate + "0";
-                list.push(<div key={num}><Chart name={gamelist[num].name_game} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" isToggle={this.isToggle} exchange_rate={exchangerate[num].exchange_rate} /></div>);
+                list.push(<div key={num}><Chart name={gamelist[num].name_game} change={chan} img={gamelist[num].image_path} gameintro={gamelist[num].game_intro} isOpen={this.isOpen} alt="" isToggle={this.isToggle} exchange_rate={exchangerate[num].exchange_rate} ref={(cd) => this.child = cd} /></div>);
             }
         }
         this.setState({

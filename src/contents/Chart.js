@@ -17,15 +17,15 @@ class Chart extends Component {
     this.exchangeinfo = {};
     this.exchange_totalplatform = 0;
     this.totalmoney = 0;
-    let logininfo = JSON.parse(localStorage.getItem('logininfo'));
-    if (logininfo !== undefined) {
-      this.money_platform = logininfo.money_platform;
-    }
   }
   handleChange = (evt) => {
     const { name, value } = evt.target;
     this.exchangeinfo[name] = value;
     let num = name.charAt(0);
+    let logininfo = JSON.parse(localStorage.getItem('logininfo'));
+    if (logininfo !== undefined) {
+      this.money_platform = logininfo.money_platform;
+    }
     if (this.state.money_direction === "G2P") { //게임머니 ==> 플랫폼머니일 경우 조건에 따라 결제하기 버튼 on/off - 민호
       console.log("환율 곱하기 게임 머니" + 1 / this.props.exchange_rate * value);
       this.exchangeinfo[num + "platform"] = 1 / this.props.exchange_rate * value;
@@ -86,11 +86,9 @@ class Chart extends Component {
     }
     evt.preventDefault();
   }
-  toggle = () => {
+  toggle = () => {    // 게임리스트 자세히 보기 on/off - 상욱
     if (localStorage.getItem('logininfo')) {
-      this.setState(prevstate => ({
-        collapse: !prevstate.collapse
-      }));
+      this.props.listControl(this);
     }
     else { //로그인 안되었을 경우 Project.js에서 모달 isOpen:true로 바뀜
       this.props.isToggle();
