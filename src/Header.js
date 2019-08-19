@@ -41,9 +41,13 @@ class Header extends Component {
         if (this.isLogin()) {
             return (
                 <>
-                    <li onClick={() => { this.isToggle() }}>마이페이지</li>
-                    <li onClick={this.logOut}>로그아웃</li>
-                    <li onClick={this.isOpen}>회원정보수정</li>
+                {/* 로그인후 Nav 설정 */}
+                   
+                    <li className="logNav" onClick={() => { this.isToggle() }}>마이페이지</li>  
+                    <li className="logNav" onClick={this.logOut}>로그아웃</li>
+                    <li className="logNav" onClick={this.isOpen}>회원정보수정</li>
+                    <li className="logNav" ><Link to="/exchange">환전소</Link></li> 
+        
                 </>
             );
         } else {
@@ -51,7 +55,7 @@ class Header extends Component {
                 <>
                     <li><Link to="/signin">회원가입</Link></li>
                     <li><Link to="/login">로그인</Link></li>
-                </>
+                    </>
             );
         }
     }
@@ -121,7 +125,7 @@ class Header extends Component {
             fontWeight: '1000',
             display: 'block',
             position: 'absolute',
-            left: '50%',
+            left: '10%',
             top: '30px',
             margin: '0px auto',
             padding: '0px',
