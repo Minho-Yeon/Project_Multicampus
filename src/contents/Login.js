@@ -16,6 +16,12 @@ class Login extends Component{
         this.logininfo[name]= value;
         e.preventDefault();
     }
+    handlekeypress=(e)=>{       //엔터키 입력시 로그인 버튼 클릭 메소드 - 민호
+        console.log(e.charCode);
+        if(e.charCode===13){
+            this.tryLogin();
+        }
+    }
     getCharacter=async()=>{
         await this.props.getCharacter();
     }
@@ -33,7 +39,6 @@ class Login extends Component{
             localStorage.setItem('logininfo',JSON.stringify(issuccess.data.userInfo));//로컬 스토리지에 로그인 정보 저장-민호
             await this.getCharacter();
             this.props.history.push('/');   //메인페이지로 이동-민호
-            // window.location.href='/';
         }else{
             alert(issuccess.data.message);  //로그인 실패시 메세지-민호
         }
@@ -44,8 +49,8 @@ class Login extends Component{
 
             <div className='loginform'>
             <AuthContent title="로그인">
-                <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={this.handleChange}/>
-                <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={this.handleChange}/>
+                <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={this.handleChange} onKeyPress={this.handlekeypress} autoFocus={true}/>
+                <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={this.handleChange} onKeyPress={this.handlekeypress}/>
                 <AuthButton onClick={this.tryLogin}>로그인</AuthButton>
             </AuthContent>
             </div>
