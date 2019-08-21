@@ -49,16 +49,33 @@ class Header extends Component {
             this.image_path = logininfo.image_path;
             return (
                 <>
-                    <li onClick={() => { this.isToggle() }}>마이페이지</li>
-                    <li onClick={this.logOut}>로그아웃</li>
-                    <li onClick={this.isOpen}>회원정보수정</li>
+                    {/* 로그인후 Nav 설정 */}
+                    {/* 이미지 설정 해줘야 함 민호짱 -상욱 */}
+                    <table>
+                        <tr>
+                            <td rowspan="2"><img className="testI" src="jpg/test.jpg" /></td>
+                            <td className="tdNav" >황상욱(수정필요)</td>
+                            <td className="tdNav" onClick={this.isOpen}>회원정보수정</td>
+                            <td className="tdNav"><Link to="/exchange">환전소</Link></td>
+                        </tr>
+                        <tr>
+                            <td className="tdNav">포인트(수정필요)</td>
+                            <td className="tdNav" onClick={() => { this.isToggle() }}>마이페이지</td>
+                            <td className="tdNav" onClick={this.logOut}>로그아웃</td>
+                        </tr>
+
+                    </table>
                 </>
             );
         } else {
             return (
                 <>
-                    <li><Link to="/signin">회원가입</Link></li>
-                    <li><Link to="/login">로그인</Link></li>
+                    <table className="logTable">
+                        <tr>
+                            <td><Link to="/login">로그인</Link></td>
+                            <td><Link to="/signin">회원가입</Link></td>
+                        </tr>
+                    </table>
                 </>
             );
         }
@@ -74,7 +91,7 @@ class Header extends Component {
         let logininfo = JSON.parse(localStorage.getItem('logininfo'));
         console.log(logininfo);
         let current_salt = logininfo.salt;
-        let passwordinfo= this.passwordinfo;
+        let passwordinfo = this.passwordinfo;
         await hasher({
             password: passwordinfo.current_password,
             salt: current_salt,
@@ -165,7 +182,7 @@ class Header extends Component {
             fontWeight: '1000',
             display: 'block',
             position: 'absolute',
-            left: '50%',
+            left: '120px',
             top: '30px',
             margin: '0px auto',
             padding: '0px',

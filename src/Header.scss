@@ -25,30 +25,22 @@
 
 // 헤더와 로그인폼 스타일 시작 (상욱 07.25)
 .header{
+   min-width: 800px; // nav 줄어드는거 방지
     height: 60px;
     border-bottom: 2px solid black;
     font-family: 'Black Han Sans', sans-serif;
-    
-    
 }
 
 
 .header ul{
-    padding-top: 30px;
+   float: right;
     list-style: none;
 }
-.header li {
+.header li {  //NavLogin 후 박스 설정
     display: block;
     position: relative;
-    float: right;
-    margin: 3px;    
-}
-.header li a{
-    color: black;
-}
-.header li :hover{
-    text-decoration: none;
-    color: black;
+    margin: 0 ;
+    width: 120px;
 }
 // 헤더와 로그인폼 스타일 끝 (상욱 07.25)
 
@@ -63,14 +55,59 @@
         float: left;
     }
 .info{
-width: 40%;
-float: right;
-   font-size: 24px;
+    width: 40%;
+    float: right;
+    font-size: 24px;
    
 }
 
 .uploadimg{
     float: left;
 }
+//모달 스타일 끝
 
 
+// 상단 Navbar 재설정 상욱
+// td{
+//     // background-color: red;
+// }
+
+.form {
+    padding: 0;
+    margin: 0;
+}
+
+.testI{
+  width: 60px;
+  height: 58px;
+}
+.tdNav{
+    width:130px;
+    text-align: center;
+}
+.tdNav:hover{
+    background-color: yellow;
+}
+
+.logTable{
+    margin-top:35px;
+  
+}
+.logTable td{
+    padding-left: 10px;
+    padding-right:10px;
+    
+}
+table:hover{
+text-decoration: none;
+color: black;
+cursor: pointer;
+}
+
+table a{
+    color: black;
+}
+table a:hover{
+    text-decoration: none;
+    color: black;
+}

@@ -28,7 +28,7 @@ class Character extends Component {
         console.log("value=", out);
 
         this.setState({
-            output: out.value,
+            output: out.    value,
             addvalue: props,
         });
     }
