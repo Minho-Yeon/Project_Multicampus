@@ -40,6 +40,20 @@ const api= {
         return rows;
     },
 
+    getrow_characters: async (value) => {
+        let select_stmt=`SELECT c.idx_user, c.name_character, c.money_character, g.name_game, g.image_path2, e.exchange_rate 
+                        FROM Characters_TB AS c
+                        LEFT JOIN Games_TB AS g 
+                        ON c.idx_game = g.idx_game
+                        LEFT JOIN ExchangeRate_TB AS e
+                        ON g.idx_game = e.idx_game 
+                        WHERE c.idx_user= "${value}"
+                        ORDER BY g.idx_game;`
+        const [rows, fields] = await mydb.query(select_stmt);        
+   
+        return rows;
+    },
+
 //end mysql    
 //mongodb
 

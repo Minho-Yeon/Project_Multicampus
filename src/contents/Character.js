@@ -18,8 +18,6 @@ class Character extends Component {
 
         console.log("props", props);
      
-
-
         var val = document.getElementsByClassName('datain')[props];
         console.log("value=", val.value);
         var out = document.getElementsByClassName('out');
@@ -34,6 +32,16 @@ class Character extends Component {
             addvalue: props,
         });
     }
+    
+    addBill = () => {
+        var p = document.createElement('p'); 
+        var p_txt = document.createTextNode(this.state.output);
+        var bill_div = document.querySelector('bill');
+        p.appendChild(p_txt);
+        bill_div.appendChild(p);
+
+    }
+
 
     // addBtn = () => {
     //     var props = this.props.number
@@ -56,7 +64,7 @@ class Character extends Component {
                     <input className="datain" onKeyUp={this.datain} number={this.props.number} />
                     <img src="./jpg/rightarrow.png" className="right" alt="" />
                     <input className="output" type="text" value={this.state.output} />
-                    <button className="addBtn" onClick={this.props.function}  >추가하기</button>
+                    <button className="addBtn" onClick={this.addBill}>추가하기</button>
                 </div>
                 <div className="bill">
                     <h2>계산서</h2>

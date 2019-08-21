@@ -13,14 +13,7 @@ router.get('/', async (req,res)=>{
     // console.log(a);
 
 
-    // let resend_check = await api.getrow('SecurityCode_TB', 'nexon_email', 'admin@admin.com');
-    // console.log(resend_check);
-
-    // if(resend_check){
-    //     console.log('확인')
-    //     save.deletedb('SecurityCode_TB', 'nexon_email', 'admin@admin.com');
-    // };
-
+    
 
  
    

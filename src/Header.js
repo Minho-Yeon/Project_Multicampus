@@ -38,6 +38,7 @@ class Header extends Component {
     logOut = () => {  //로그아웃 메소드 - 민호
         console.log('로그아웃 시도');
         localStorage.removeItem('logininfo');
+        localStorage.removeItem('chracters');   //character정보 삭제_ 다래
         window.location.href = '/';
     }
     menuSet = () => {       //로그인 여부에 따라 메뉴 출력 메소드-민호

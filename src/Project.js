@@ -9,6 +9,7 @@ import Mypage from './Mypage';
 import Footer from './Footer';
 import Auth from './contents/Auth';
 import Confirm from './contents/Confirm';
+import NewExchange from './contents/Exchange/NewExchange'
 
 import { BrowserRouter, Route } from 'react-router-dom';
 import request from './contents/Request';
@@ -34,12 +35,15 @@ class Project extends Component {
         let rawdata2 = await request('get', '/server/exchangerate', {});
         localStorage.setItem('gamelist', JSON.stringify(rawdata1.data.gamelist));
         localStorage.setItem('exchangerate', JSON.stringify(rawdata2.data.exchangerate));
+        localStorage.setItem('Infos','[]');// 계산서 관련 data 저장소_ 다래
     }
     getCharacter=async()=>{
         if(localStorage.getItem('logininfo')){
             let logininfo = JSON.parse(localStorage.getItem('logininfo'));
             let rawdata= await request('post','/server/character',{useremail:logininfo.email_user});
             let characterinfo=rawdata.data.characterinfo;
+            let new_rawdata = await request('post','/server/character/userinfo',{useremail:logininfo.email_user});  //.. character 정보를 받아오는 방법을 바꿔서 다시 가져옴, localStorage에 저장함_ 다래
+            localStorage.setItem('chracters', JSON.stringify(new_rawdata.data.characterinfo));
             console.log("character정보");
             console.log(characterinfo);
             this.setState({
@@ -54,7 +58,7 @@ class Project extends Component {
     }
     render() {
         return (
-            <BrowserRouter>
+            <BrowserRouter className='Project'>
                 <div>
                     <Header isToggle={this.isToggle} />{/*Navbar 부분 */}
                 </div>
@@ -66,15 +70,15 @@ class Project extends Component {
                         <Route path="/signin" component={Signin} />
                         <Route path="/auth" component={Auth} />
                         <Route path="/confirm" component={Confirm} />
+                        <Route path='/newExchange' component={NewExchange} />
                     </div>
                     <div id="Mypage" style={{ width: this.state.isOpen ? '30%' : '0%'}}  >{/*마이페이지 부분 */}
                         <Mypage characterinfo={this.state.characterinfo}/>
                     </div>
                 </div>
-                <div>
+                <div className="footer">
                     <Footer />{/* footer 부분*/}
                 </div>
-
             </BrowserRouter>
         )
     }
