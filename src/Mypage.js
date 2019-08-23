@@ -23,10 +23,8 @@ class Mypage extends Component {
 
     render() {
         return (
-            <div className='Mypage'>
-                Mypage
+            <div className='Mypage'> 
                 {this.getmygameinfo()}
-                <div ><Link className="changeLink" to="/exchange">결제페이지</Link></div>
             </div>
         )
     }

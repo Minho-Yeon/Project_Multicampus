@@ -187,7 +187,8 @@ class Header extends Component {
             margin: '0px auto',
             padding: '0px',
             transform: 'translate(-50%,-50%)',
-            color: 'black'
+            color: 'black',
+            width: '232px'
         }
         var modal = {
             backgroundColor: '#f2f2f2'

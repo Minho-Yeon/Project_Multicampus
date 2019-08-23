@@ -202,6 +202,7 @@ class Chart extends Component {
           <div style={list}>
             <img className="subimg" src={this.props.img} alt="" />
             {this.props.name}
+            
             <p style={change}>{this.props.change}</p>
             <button className="downbtn" onClick={this.toggle}><img className="downimg" src="./jpg/down.png" alt="" /></button>
             <Collapse isOpen={this.state.collapse}>
@@ -210,7 +211,7 @@ class Chart extends Component {
                   <p style={gameintro}>{this.props.gameintro}</p>
                   <div style={gameintro}>총 보유머니 : {this.totalmoney}</div>
                   {this.characterlist}
-                  <Button color="primary" onClick={() => { this.isOpen(this.exchangeinfo) }} disabled={this.state.disabled}>결제하기</Button>
+                  <Button color="primary" className="paybtn" onClick={() => { this.isOpen(this.exchangeinfo) }} disabled={this.state.disabled}>결제하기</Button>
                 </CardBody>
               </Card>
             </Collapse>

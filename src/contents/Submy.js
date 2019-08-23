@@ -39,13 +39,11 @@ class Submy extends Component {
     render() {
         this.setCharacterinfo();
         return (
-            <div className="ChartDiv">
-                <div className="Submyli">
+            <div className="ChartDiv" >
+                <div className="Submyli" onClick={this.toggle}>
                     <img className="myimg" src={this.props.img} alt="" />
                     {this.props.name}
-                    
-                    <button style={{ flaot: "right" }} className="downbtn" onClick={this.toggle}><img className="Subdown" src="./jpg/down.png" alt="" /></button>
-                    <div>{"총 보유머니 : " +this.totalmoney}</div>
+                    <div className="ClickBtn" >{"총 보유머니 : " +this.totalmoney}</div>
                     <Collapse isOpen={this.state.collapse}>
                         <Card>
                             <CardBody>
