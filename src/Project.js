@@ -10,9 +10,10 @@ import Footer from './Footer';
 import Auth from './contents/Auth';
 import Confirm from './contents/Confirm';
 import NewExchange from './contents/Exchange/NewExchange'
-
-import { BrowserRouter, Route } from 'react-router-dom';
+import Errorpage from './contents/Errorpage'
+import { BrowserRouter, Route , Switch } from 'react-router-dom';
 import request from './contents/Request';
+
 
 
 class Project extends Component {
@@ -64,6 +65,7 @@ class Project extends Component {
                 </div>
                 <div className="ContentsBox">
                     <div id="Contents" style={{ width: this.state.isOpen ? '70%' : '100%'}}>{/*내용 부분 */}
+                        <Switch>
                         <Route exact to path="/" component={() => <Main  characterinfo={this.state.characterinfo}/>}/>
                         <Route path="/exchange" component={() => <Exchange  getCharacter={this.getCharacter} characterinfo={this.state.characterinfo}/>}/>
                         <Route path="/login" component={() => <Login getCharacter={this.getCharacter}/>}/>
@@ -71,6 +73,8 @@ class Project extends Component {
                         <Route path="/auth" component={Auth} />
                         <Route path="/confirm" component={Confirm} />
                         <Route path='/newExchange' component={NewExchange} />
+                        <Route component={Errorpage} />
+                        </Switch>
                     </div>
                     <div id="Mypage" style={{ width: this.state.isOpen ? '30%' : '0%'}}  >{/*마이페이지 부분 */}
                         <Mypage characterinfo={this.state.characterinfo}/>

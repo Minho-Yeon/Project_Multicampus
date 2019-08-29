@@ -162,7 +162,7 @@ class Chart extends Component {
       display: 'inline'
     },
     ulstyle = {
-      width: '500px'
+      width: '800px'
     },
     gameintro = {
       fontSize: '8px',

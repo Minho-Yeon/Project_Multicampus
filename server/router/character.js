@@ -15,6 +15,8 @@ router.post('/', async (req,res)=>{
 router.post('/userinfo', async (req,res)=>{
     console.log('/server/character/userinfo 요청받음');
     let useremail=req.body.useremail;
+    console.log("1",useremail);
+    
     let userInfo=await api.getrow('Users_TB','email_user',useremail);
     let characters = await api.getrow_characters(userInfo.idx_user);
     let gameInfo={}

@@ -15,8 +15,10 @@ class Header extends Component {
             modal: false,
             file: undefined,
             image_change: false,
+            imagePreviewUrl:'', //프리뷰 상욱
         }
         this.passwordinfo = {};
+        this._handleImageChange = this._handleImageChange.bind(this); //프리뷰 상욱
     }
     isOpen = () => {
         this.setState(prevstate => ({
@@ -53,13 +55,13 @@ class Header extends Component {
                     {/* 이미지 설정 해줘야 함 민호짱 -상욱 */}
                     <table>
                         <tr>
-                            <td rowspan="2"><img className="testI" src="jpg/test.jpg" /></td>
-                            <td className="tdNav" >황상욱(수정필요)</td>
+                            <td rowspan="2"><img className="testI" src={this.image_path} alt="" /></td>
+                            <td className="tdNav" >{this.name_user}</td>
                             <td className="tdNav" onClick={this.isOpen}>회원정보수정</td>
-                            <td className="tdNav"><Link to="/exchange">환전소</Link></td>
+                            <td className="tdNav"><Link to="/newexchange">환전소</Link></td>
                         </tr>
                         <tr>
-                            <td className="tdNav">포인트(수정필요)</td>
+                            <td className="tdNav"> 포인트 : {this.money_platform}</td>
                             <td className="tdNav" onClick={() => { this.isToggle() }}>마이페이지</td>
                             <td className="tdNav" onClick={this.logOut}>로그아웃</td>
                         </tr>
@@ -107,11 +109,11 @@ class Header extends Component {
                     return;
                 }
                 // var regex = /^[A-Za-z0-9]{6,12}$/;
-                var regex = /^(?=.*[A-Za-z])(?=.*[0-9]).{6,12}$/;
+                var regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!?])[A-Za-z\d$@$!?]{8,}$/;
                 console.log(passwordinfo.new_password);
-                if (!regex.test(passwordinfo.new_password)) {     //비밀번호 숫자,문자 포함 6~12자리-민호
-                    console.log('새로운 비밀번호를 다시 설정하셔야 합니다.');
-                    alert('새로운 비밀번호를 다시 설정하셔야 합니다.');
+                if (!regex.test(passwordinfo.new_password)) {     //비밀번호 숫자,문자 포함 8~12자리-민호
+                    console.log('숫자,문자 포함 8~12자리로 다시 설정하셔야 합니다.');
+                    alert('숫자,문자,특수문자 포함 8~12자리로 다시 설정하셔야 합니다.');
                     return;
                 };
                 if (passwordinfo.new_password !== passwordinfo.confirm_password) {
@@ -146,6 +148,23 @@ class Header extends Component {
             file: e.target.files[0],
         })
     }
+    //프리뷰 상욱
+    _handleImageChange(e){
+        e.preventDefault();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        reader.inloadend = () =>{
+            this. setState({
+                file: file,
+                imagePreviewUrl : reader.result
+            });
+        }
+        reader.readAsDataURL(file)
+    }
+    //프리뷰 상욱 끝
+
+
     uploadFile = () => {
         console.log('uploadFile실행');
         console.log(this.state.file);
@@ -172,9 +191,17 @@ class Header extends Component {
                 image_change: !prevstate.image_path,
             }));
         });
-
     }
+
+
+
     render() {
+        let {imagePreviewUrl} = this.state;
+        let $imagePreviewUrl = null;
+        if (imagePreviewUrl){
+            $imagePreviewUrl = (<img src={imagePreviewUrl} />);
+        }
+
         let menu = this.menuSet();  //로그인에 따라 메뉴 출력 - 민호
 
         var Header = {

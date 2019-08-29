@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/',async(req,res)=> {   //패스워드 변경 요청 처리 메소드 -민호
     console.log('패스워드 변경 요청 받음');
-    console.log(req.body);
+    console.log("요청받음",req.body);
     let passwordinfo={};
     passwordinfo.new_password=req.body.new_password;
     passwordinfo.current_password=req.body.current_password;
@@ -19,4 +19,4 @@ router.post('/',async(req,res)=> {   //패스워드 변경 요청 처리 메소�
         res.json({'success':true});
 });
 
-module.exports = router;
+module.exports = router;0
