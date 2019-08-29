@@ -7,6 +7,7 @@ import InputWithLabelButton from './auth/InputWithLabelButton';
 import InputWithButton from './auth/InputWithButton';
 import {withRouter} from 'react-router-dom';
 import './Signin.scss';
+import {Link} from 'react-router-dom'
 import request from './Request';
 
 class Signin extends Component {
@@ -94,7 +95,16 @@ class Signin extends Component {
             alert('코드가 틀렸습니다.');
         }
     }
+    isLogin = () => {
+        if(localStorage.getItem('logininfo')){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
     render() {
+        if(!this.isLogin()){
         return (    //민호
             <div className="signinform">
                 <AuthContent title="회원가입">
@@ -109,6 +119,14 @@ class Signin extends Component {
                 </AuthContent>
             </div>
         )
+    } else{
+         return(
+             <div>
+             <h1>이미 회원가입을 하셨습니다</h1>
+             <Link to="/">홈으로</Link>
+             </div>
+         )
+    }
     }
 }
 export default withRouter(Signin);

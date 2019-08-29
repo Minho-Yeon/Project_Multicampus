@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Project.scss';
 import Header from './Header';
 import Main from './contents/Main';
-import Exchange from './contents/Exchange';
+
 import Login from './contents/Login';
 import Signin from './contents/Signin';
 import Mypage from './Mypage';
@@ -67,7 +67,6 @@ class Project extends Component {
                     <div id="Contents" style={{ width: this.state.isOpen ? '70%' : '100%'}}>{/*내용 부분 */}
                         <Switch>
                         <Route exact to path="/" component={() => <Main  characterinfo={this.state.characterinfo}/>}/>
-                        <Route path="/exchange" component={() => <Exchange  getCharacter={this.getCharacter} characterinfo={this.state.characterinfo}/>}/>
                         <Route path="/login" component={() => <Login getCharacter={this.getCharacter}/>}/>
                         <Route path="/signin" component={Signin} />
                         <Route path="/auth" component={Auth} />
