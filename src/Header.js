@@ -15,10 +15,10 @@ class Header extends Component {
             modal: false,
             file: undefined,
             image_change: false,
-            imagePreviewUrl:'', //프리뷰 상욱
+    
         }
         this.passwordinfo = {};
-        this._handleImageChange = this._handleImageChange.bind(this); //프리뷰 상욱
+
     }
     isOpen = () => {
         this.setState(prevstate => ({
@@ -148,23 +148,7 @@ class Header extends Component {
             file: e.target.files[0],
         })
     }
-    //프리뷰 상욱
-    _handleImageChange(e){
-        e.preventDefault();
-        let reader = new FileReader();
-        let file = e.target.files[0];
-
-        reader.inloadend = () =>{
-            this.setState({
-                file: file,
-                imagePreviewUrl : reader.result
-            });
-        }
-        reader.readAsDataURL(file)
-    }
-    //프리뷰 상욱 끝
-
-
+ 
     uploadFile = () => {
         console.log('uploadFile실행');
         console.log(this.state.file);
@@ -196,11 +180,6 @@ class Header extends Component {
 
 
     render() {
-        let {imagePreviewUrl} = this.state;
-        let $imagePreviewUrl = null;
-        if (imagePreviewUrl){
-            $imagePreviewUrl = (<img src={imagePreviewUrl} />);
-        }
 
         let menu = this.menuSet();  //로그인에 따라 메뉴 출력 - 민호
 
