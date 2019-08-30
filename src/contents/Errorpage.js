@@ -5,7 +5,7 @@ class Errorpage extends Component {
         return (
             <div>
                 <div>
-                <h1>에쿵! 잘못들어 버렸지 뭐야 </h1>
+                <h1>에쿵! 잘못 들어와버렸지 뭐야 </h1>
                 </div>
             </div>
         );

@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 
-router.post('/',async (req,res)=>{
+router.post('/', async (req,res)=>{
     console.log('/server/login요청 받음');
     let login_email = req.body.email;
     let login_password = req.body.password;
@@ -15,7 +15,7 @@ router.post('/',async (req,res)=>{
         hasher({
             password: login_password,
             salt: user.salt
-        }, function(err, pass, salt, hash){
+        }, async function(err, pass, salt, hash){
             if(err) {
                 console.log(err)
             } else {
@@ -29,6 +29,32 @@ router.post('/',async (req,res)=>{
                     userInfo['image_path'] = user.image_path;
                     res.json({'userInfo':userInfo});
                 } else {
+
+                    let num = 0; 
+                   
+                    console.log("dbuser",user);
+                    num = user.countlog + 1
+                    await save.updatedb('Users_TB',[{'name':'countlog','value':num}],'email_user', user.email_user);
+                    console.log("dblognum",num);
+
+                    if(num >= 5){
+                        let lastfaildlogin = new Date()
+                        console.log("마지막 시간",lastfaildlogin);  
+                        res.json({'message':'로그인 횟수 시도를 초과 하였습니다 30초후 시도해 주세요'});
+                        let retry = new Date()
+                        console.log("재시도",retry);
+                        
+                        let retrySec = lastfaildlogin - retry
+                        console.log("경과시간",retrySec);
+                        
+
+                        if(retrySec>3000){
+                            num = 0
+                            await save.updatedb('Users_TB',[{'name':'countlog','value':num}],'email_user', user.email_user);
+                            console.log("count초기화",num);
+                        }
+                    } 
+
                     res.json({'message':'비밀번호가 잘못되었습니다.'});
                 }
             }
