@@ -29,11 +29,9 @@ class ExchangeBody extends Component {
     changeState= async (Info)=> {
 
         let data = JSON.parse(localStorage.getItem('Infos'))
-        // console.log('1',data)
+
         data.push(Info);
         localStorage.setItem('Infos', JSON.stringify(data)) 
-        // console.log('2',data)
-        
 
         this.setState({
         check: Info.check,
@@ -51,19 +49,15 @@ class ExchangeBody extends Component {
 
     showReceipt(data) {
     
-    // console.log('sjsjsj', data)
     if (this.state.check === 1){
+        let user_info = JSON.parse(localStorage.getItem('logininfo'));
+
         return <Receipt Infos={data}      
             check={this.state.check}
-            game_name={this.state.game_name}
-            money={this.state.money}
-            money_with_rate={this.state.money_with_rate}
-            fee={this.state.fee}
-            remain_game_money={this.state.remain_game_money}
-            remain_platform_money={this.state.remain_platform_money} 
+            user_name={user_info.name_user}
             />
-    }
-};
+        }
+    };
 
 
 
@@ -120,8 +114,6 @@ class ExchangeBody extends Component {
 
 
     render() {
-
- 
 
         return (
             <div className="ExchangeBody">

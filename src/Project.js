@@ -21,7 +21,6 @@ class Project extends Component {
         super(props);
         this.state = {
             isOpen: false,
-
             characterinfo:"",
             
         }
@@ -72,7 +71,7 @@ class Project extends Component {
                         <Route path="/signin" component={Signin} />
                         <Route path="/auth" component={Auth} />
                         <Route path="/confirm" component={Confirm} />
-                        <Route path='/newExchange' component={NewExchange} />
+                        <Route path='/newExchange' component={NewExchange} isOpen={this.state.isOpen} />
                         <Route component={Errorpage} />
                         </Switch>
                     </div>

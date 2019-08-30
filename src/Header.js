@@ -155,7 +155,7 @@ class Header extends Component {
         let file = e.target.files[0];
 
         reader.inloadend = () =>{
-            this. setState({
+            this.setState({
                 file: file,
                 imagePreviewUrl : reader.result
             });
