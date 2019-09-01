@@ -93,22 +93,7 @@ class ExchangeBody extends Component {
             };
             return list;
 
-        } else {
-
-            let list2 = [];
-            let game_list = this.state.games;
-            let rate_list = this.state.rates;
-            for (let num2 in game_list) {
-                list2.push(<div key={num2}>
-                    <ExchangeGameList cSelected={this.props.cSelected}
-                        name={game_list[num2].name_game}
-                        img={game_list[num2].image_path}
-                        rate={rate_list[num2].exchange_rate}
-                        money={'-'} />
-                </div>);
-            }
-            return list2;
-        };
+        } 
     };
 
 

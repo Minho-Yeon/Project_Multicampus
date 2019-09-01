@@ -21,6 +21,24 @@ class GameListChangeInfo extends Component {
         return sum_money;
     };
 
+    showChangeMoney = () => {
+        
+        let sumMoney = this.showMoneyInfo();
+        let changeMoney = this.props.money;
+        let fee = this.props.fee;
+
+        if(this.props.cSelected == '플랫폼머니로 변경하기'){
+            sumMoney -= changeMoney;
+            sumMoney -= fee;
+    
+            return sumMoney
+        } else {
+            sumMoney += changeMoney;    
+
+            return sumMoney
+        }
+    };
+
 
 
     render() {
@@ -43,7 +61,7 @@ class GameListChangeInfo extends Component {
                                 <InputGroupText className="Changetitle">변경된 보유 금액</InputGroupText>
                             </InputGroupAddon>
                             <InputGroupAddon className="change" addonType="append">
-                                <InputGroupText className="Change_money"> {this.props.money} </InputGroupText>
+                                <InputGroupText className="Change_money"> {this.showChangeMoney()} </InputGroupText>
                             </InputGroupAddon>
                         </InputGroup>
                     </Row>
