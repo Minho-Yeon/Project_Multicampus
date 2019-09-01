@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Row, Col, Button } from 'reactstrap';
 import './Receipt.scss'
+import axios from 'axios';
 
 class Receipt extends Component {
     constructor(props){
@@ -12,7 +13,8 @@ class Receipt extends Component {
         };
     };
 
-    createReceipt(){
+
+    createReceipt=()=>{
         let list = [];
         let game_name_check = {};
         let infos = this.props.Infos;
@@ -74,25 +76,26 @@ class Receipt extends Component {
     
                 save_data.push(game_name_check[key_list[num2]]);
                 }    
-
             }
- 
         }    
         
         console.log("save_data :", save_data);
        
-        let new_save_data = save_data;
+        let send_data = {
+            exchangeData: save_data,
+            userInfo: localStorage.getItem('logininfo')
+        }
+
+        axios({
+            url: 'http://localhost:5000/server/exchange/saveinfo',
+            method: 'post',
+            data: send_data
+          });
+
         return list
     };
 
 
-    saveData(listData) {
-        console.log("nw save_data :", this.createReceipt.new_save_data);
-    }
-
-    clearData() {
-
-    }
 
 
 
@@ -123,9 +126,9 @@ class Receipt extends Component {
                     </tbody>
                 </Table>
                 <Row>
-                    <Col> <Button color="secondary" onClick={this.clearData()}> 취소 </Button>
+                    <Col> <Button color="secondary" onClick={this.props.clearData()}> 취소 </Button>
                     </Col>
-                    <Col> <Button color="danger" onClick={this.saveData()}> 바꾸기 </Button>
+                    <Col> <Button color="danger" onClick={this.props.saveData()}> 바꾸기 </Button>
                     </Col>
                 </Row>
             </div>

@@ -4,6 +4,7 @@ import { } from 'reactstrap';
 import ExchangeGameList from './ExchangeGameList';
 import './ExchangeBody.scss'
 import Receipt from './Receipt'
+import axios from 'axios';
 
 class ExchangeBody extends Component {
     constructor(props) {
@@ -47,20 +48,37 @@ class ExchangeBody extends Component {
 
     };
 
+
+    saveData = ()=> {
+
+        console.log('여기에 들어와야대')
+        axios({
+            url: 'http://localhost:5000/server/exchange/saveinfo',
+            method: 'post',
+            data: {insertCheck: "approval"}
+          });
+    }
+
+    clearData() {
+
+    }
+
+
+
     showReceipt(data) {
     
     if (this.state.check === 1){
         let user_info = JSON.parse(localStorage.getItem('logininfo'));
 
-        return <Receipt Infos={data}      
+        return <Receipt Infos={data}
+            cSelected={this.props.cSelected}      
             check={this.state.check}
             user_name={user_info.name_user}
+            saveData={this.saveData}
+            clearData={this.clearData}
             />
         }
     };
-
-
-
 
 
     gameList() {

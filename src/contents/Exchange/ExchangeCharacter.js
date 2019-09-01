@@ -47,7 +47,7 @@ class ExchangeCharacter extends Component {
 
 
 
-    setReceipt() {
+    setReceipt= async ()=> {
  
         let Info = {}
 
@@ -61,8 +61,8 @@ class ExchangeCharacter extends Component {
             Info['remain_game_money'] = parseInt(this.props.characterMoney) - parseInt(this.state.moneyValue) - parseInt(parseInt(this.state.moneyValue) * 0.05);
             Info['remain_platform_money'] = parseInt(this.state.platform_money) + parseInt(parseInt(this.state.moneyValue) / parseInt(this.props.rate)) - parseInt(parseInt(this.state.moneyValue) * 0.05);
             Info['selected'] = this.props.cSelected;
-            this.props.changeMoney(Info['money'],Info['fee'])
-            this.props.changeState(Info);
+            await this.props.changeMoney(Info['money'],Info['fee'])
+            await this.props.changeState(Info);
 
         } else if(this.props.cSelected === '게임머니로 변경하기'){
             Info['check'] = 1;
@@ -74,8 +74,8 @@ class ExchangeCharacter extends Component {
             Info['remain_game_money'] = parseInt(this.props.characterMoney) + parseInt(parseInt(this.state.moneyValue) * parseInt(this.props.rate));
             Info['remain_platform_money'] = parseInt(this.state.platform_money) - parseInt(this.state.moneyValue);
             Info['selected'] = this.props.cSelected;
-            this.props.changeMoney(Info['money_with_rate'],Info['fee'])
-            this.props.changeState(Info);
+            await this.props.changeMoney(Info['money_with_rate'],Info['fee'])
+            await this.props.changeState(Info);
         }
     }
 

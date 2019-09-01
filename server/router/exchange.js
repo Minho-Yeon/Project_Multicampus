@@ -27,48 +27,60 @@ let character_info ='';
 let character_idx = ''; 
 let user_idx = ''; 
 let exchange_data = ''; 
-
+let check = '';
 
 
 // 거래요청시 exchange TB에 insert / 승인 전_ 다래
 router.post('/saveinfo', async(req,res)=>{
-    console.log('/server/exchange요청 받음');
+    console.log('/server/exchange/saveinfo 요청 받음');
 
-    user = req.body.userInfo; 
-    user_email = user.email;   
+    check = req.body.insertCheck;
+    console.log('check', check)
 
-    characters = req.body.characterInfo;
+    if(check !== "approval"){
+        user = req.body.userInfo; 
+        characters = req.body.exchangeData;
+        console.log('user', user)
+        console.log('characters', characters)
+    } else {
+        console.log('user', user)
+        console.log('characters', characters)
+    }
 
-    for ( var num in characters){        
+ 
 
-        character_name = characters[num].character_name;
-        character_change_money = characters[num].change_Gmoney;
-        user_platform_money = characters[num].change_Pmoney;
-        rate = characters[num].ex_rate;
-        moneydir = characters[num].moneydir;
-        fee = characters[num].fee;
+
+
+    // for ( var num in characters){        
+
+    //     character_name = characters[num].character_name;
+    //     character_change_money = characters[num].change_Gmoney;
+    //     user_platform_money = characters[num].change_Pmoney;
+    //     rate = characters[num].ex_rate;
+    //     moneydir = characters[num].moneydir;
+    //     fee = characters[num].fee;
         
 
-        // character_TB에서 정보 가져오기
-        character_info = await api.getrow('Characters_TB', 'name_character', character_name);
-        character_idx = character_info['idx_character'];
+    //     // character_TB에서 정보 가져오기
+    //     character_info = await api.getrow('Characters_TB', 'name_character', character_name);
+    //     character_idx = character_info['idx_character'];
 
-        // user_idx저장
-        user_idx = character_info['idx_user'];
+    //     // user_idx저장
+    //     user_idx = character_info['idx_user'];
 
 
-        // exchange TB에 저장, 승인 전
-        exchange_data = [
-                            {'name':'idx_character', 'value':character_idx}, 
-                            {'name':'idx_exchang_rate', 'value':rate}, 
-                            {'name':'fee', 'value': fee}, 
-                            {'name':'moneydir', 'value': moneydir}, 
-                            {'name':'game_money', 'value':character_change_money}, 
-                            {'name':'platform_money', 'value':user_platform_money}
-                        ];
+    //     // exchange TB에 저장, 승인 전
+    //     exchange_data = [
+    //                         {'name':'idx_character', 'value':character_idx}, 
+    //                         {'name':'idx_exchang_rate', 'value':rate}, 
+    //                         {'name':'fee', 'value': fee}, 
+    //                         {'name':'moneydir', 'value': moneydir}, 
+    //                         {'name':'game_money', 'value':character_change_money}, 
+    //                         {'name':'platform_money', 'value':user_platform_money}
+    //                     ];
 
-        await save.insertdb('Exchange_TB', exchange_data);
-    };
+    //     await save.insertdb('Exchange_TB', exchange_data);
+    // };
 
     res.json({'issuccess':true});
 });
