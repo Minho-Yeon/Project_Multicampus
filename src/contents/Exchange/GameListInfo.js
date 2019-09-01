@@ -28,27 +28,13 @@ class GameListInfo extends Component {
                         img={this.props.img}
                         rate={this.props.rate}
                         character={this.props.character} 
-                        changeState={this.props.changeState}/>
+                        changeState={this.props.changeState}
+                        changeMoney={this.props.changeMoney}
+                        />
             </div>);
         };
         return list;
     };
-
-
-    // setReceipt() {
-
-    //     let Info = {}
-    //     Info['check'] = 1;
-    //     Info['game_name'] = this.props.name;
-    //     Info['money'] = parseInt(this.state.moneyValue);
-    //     Info['money_with_rate'] = parseInt(parseInt(this.state.moneyValue) * parseInt(this.props.rate));
-    //     Info['fee'] = parseInt(parseInt(this.state.moneyValue) * 0.05);
-    //     Info['remain_game_money'] = 0;
-    //     Info['remain_platform_money'] = 0;
-    //     Info['selected'] = this.props.cSelected;
-    //     console.log(Info)
-    //     this.props.changeState(Info);
-    // }
 
 
     render() {
