@@ -43,7 +43,7 @@ class Login extends Component {
     tryLogin = async () => {    //로그인시도 메소드 -민호
         console.log(this.logininfo);
         let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        if (!regExp.test(this.logininfo.email)) {       //이메일 정규식 체크-민호
+        if (!regExp.test(this.logininfo.email)) {      
             console.log('이메일이 아닙니다');
             alert('이메일 형식이 아닙니다.');
             return;
