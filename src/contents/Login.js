@@ -53,6 +53,13 @@ class Login extends Component {
         if (issuccess.data.userInfo !== undefined) {
             localStorage.setItem('logininfo', JSON.stringify(issuccess.data.userInfo));//로컬 스토리지에 로그인 정보 저장-민호
             await this.getCharacter();
+
+            console.log('issuccess.data.userInfo', issuccess.data.userInfo)
+            let loginData = {
+                isLoggedIn: true,
+                username: JSON.stringify(issuccess.data.userInfo.email_user)
+            };
+            sessionStorage.setItem('key', btoa(JSON.stringify(loginData)));
             this.props.history.push('/');   //메인페이지로 이동-민호
         } else {
             alert(issuccess.data.message);  //로그인 실패시 메세지-민호
