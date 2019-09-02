@@ -42,7 +42,7 @@
 
 1. 넥슨 이메일 인증(가상) : 임의의 4자리 코드를 생성하여 이메일에서 인증
 
-<video src="/ppt/회원가입_01.mp4"></video>
+<video src="ppt/회원가입_01.mp4"></video>
 
 <video src="/ppt/회원가입_02.mp4"></video>
 
