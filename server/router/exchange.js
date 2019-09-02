@@ -47,9 +47,6 @@ router.post('/saveinfo', async(req,res)=>{
         console.log('characters', characters)
     }
 
- 
-
-
 
     // for ( var num in characters){        
 
