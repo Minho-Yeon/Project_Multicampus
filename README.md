@@ -36,8 +36,12 @@
 ### - 게임에 있는 머니를 다른 게임의 머니로 교환 할 수있는 플랫폼(Nexon서비스 게임으로 한정)
 <br>
 <br>
+
+
 ## `분석, 설계 과정`
 ###  Trello주소 : [https://trello.com/b/sZ4Kfd5h/project](https://trello.com/b/sZ4Kfd5h/project)
+
+<br>
 <br>
 
 ### `[ 회원 가입 ]`
